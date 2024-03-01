@@ -67,7 +67,6 @@ function addToCart(){
     cart = new Map();
     console.log("Массив создан");
   }
-  
   if (sessionStorage.getItem("cart")) {
     // if(cart.size > 0){
       //for(let key = 0; key < cart.size; key++){
