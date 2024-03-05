@@ -47,7 +47,8 @@
                 <div class='add-korz'>
                     
                     <input type='hidden' id='id_p' name='id_product' value='{$result['id_product']}'>
-                    <button onclick='addToCart()' class='add-korz-btn' type='button' name='submit'>В корзину</button>
+                    <input type='hidden' id='id_b' name='id_b' value='button_p{$result['id_product']}'>
+                    <button  id='button_p{$result['id_product']}' class='add-korz-btn' type='button' name='submit'>В корзину</button>
                     
                 </div>
                 </div>

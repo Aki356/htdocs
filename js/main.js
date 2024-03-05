@@ -53,10 +53,14 @@ var cart;
 if (typeof sessionStorage === 'undefined') {
 	alert("sessionStorage не работает!");
 }
-// var input;
+var input_p;
+var input_b;
 function addToCart(){
-  let input = document.getElementById("id_p");
-  console.log(input.value);
+  input_p = document.getElementById("id_p");
+  input_b = document.getElementById("id_b");
+  function add() {
+    input_p = document.getElementById("id_p");
+  console.log(input_p.value);
   if (sessionStorage.getItem("cart")) {
     console.log(JSON.parse(sessionStorage.getItem("cart")));
     cart = new Map(JSON.parse(sessionStorage.getItem("cart"))); //sessionStorage.setItem("cart", input.val());
@@ -70,18 +74,18 @@ function addToCart(){
   if (sessionStorage.getItem("cart")) {
     // if(cart.size > 0){
       //for(let key = 0; key < cart.size; key++){
-        console.log(cart.get(input.value));
-        if(cart.has(input.value)){
-          let item = cart.get(input.value);
+        console.log(cart.get(input_p.value));
+        if(cart.has(input_p.value)){
+          let item = cart.get(input_p.value);
           ++item;
-          cart = cart.set(input.value, item);
+          cart = cart.set(input_p.value, item);
           alert("Такой товар в корзине есть!");
           sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
         }
       //}
       //for(let key = 0; key < cart.size; key++){
-        if(!cart.has(input.value)){
-          cart = cart.set(input.value, 1);
+        if(!cart.has(input_p.value)){
+          cart = cart.set(input_p.value, 1);
           // cart = {
           //   'id_product' : input.value,
           //   'num_product' : 1
@@ -99,7 +103,7 @@ function addToCart(){
     // }
   }
   else{
-    cart = cart.set(input.value, 1);
+    cart = cart.set(input_p.value, 1);
     sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
     alert("Товар добавлен в корзину! 0");
   }
@@ -127,7 +131,9 @@ function addToCart(){
   
   console.log(cart);
   console.log(cart.size);
-  console.log(cart.get('4'));
+  console.log(cart.get('12'));
+  }
+ add();
 }
 // if (sessionStorage.getItem("cart")) {
 //   let cart = JSON.parse(sessionStorage.getItem("cart"));
