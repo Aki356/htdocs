@@ -8,6 +8,14 @@ if(empty($_SESSION['login'])){
 }
 else{
     $account = "profile.php";
+    if($_SESSION['login'] == 'admin'){
+        $panel_a = '<li><a href="admin.php">Панель администратора</a></li>';
+        $all_orders = '<li><a href="all_orders.php">Все заказы</a></li>';
+    }
+    else{
+        $panel_a = '';
+        $all_orders = '';
+    }
 }
 if(!empty($_SESSION['photo'])){
     $photo_user = $_SESSION['photo'];
@@ -16,14 +24,7 @@ else{
     $photo_user = "images/account.png";
 }
 $panel_a = '';
-if($_SESSION['login'] == 'admin'){
-    $panel_a = '<li><a href="admin.php">Панель администратора</a></li>';
-    $all_orders = '<li><a href="all_orders.php">Все заказы</a></li>';
-}
-else{
-    $panel_a = '';
-    $all_orders = '';
-}
+
 ?>
 <div class="mob-btn">
         <img src="images/mob-btn.png" alt="">
@@ -54,8 +55,12 @@ else{
                     <li><a href="menu.php">Меню</a></li>
                     <li><a href="#">Контакты</a></li>
                     <?php 
-                    echo $panel_a;
-                    echo $all_orders;
+                    if(!empty($_SESSION['login'])){
+                        if($_SESSION['login'] == 'admin'){
+                            echo $panel_a;
+                            echo $all_orders;
+                        }
+                    }
                     ?>
                 </ul>
             </div>

@@ -53,13 +53,17 @@ var cart;
 if (typeof sessionStorage === 'undefined') {
 	alert("sessionStorage не работает!");
 }
+var input_r;
 var input_p;
-var input_b;
+var id = 0;
 function addToCart(){
-  input_p = document.getElementById("id_p");
-  input_b = document.getElementById("id_b");
+  input_r = document.getElementById("rows");
+  while (id < input_r){
+    input_p = document.getElementById("id_p" + id);
+    id++;
+  }
+  // input_p = document.getElementById("id_p");
   function add() {
-    input_p = document.getElementById("id_p");
   console.log(input_p.value);
   if (sessionStorage.getItem("cart")) {
     console.log(JSON.parse(sessionStorage.getItem("cart")));

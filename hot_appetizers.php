@@ -11,7 +11,7 @@
                     echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
                     exit;
                 }
-                if ($_SESSION['message']){
+                if (isset($_SESSION['message'])){
                     echo '<div class="answear">
                     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
                     unset($_SESSION['message']);
@@ -31,6 +31,9 @@
             }
             
             $sql = mysqli_query($connection1, "SELECT * FROM product WHERE name_kategory = 3");
+            $rowCount = mysqli_num_rows($sql);
+            echo $rowCount;
+            $id = 0;
             while ($result = mysqli_fetch_array($sql)) {
                 echo "<div class='item'>
                 <div class='item-photo'>
@@ -45,9 +48,13 @@
                 </div>
                 
                 <div class='add-korz'>
-                    
-                    <input type='hidden' id='id_p' name='id_product' value='{$result['id_product']}'>
-                    <button onclick='addToCart()' class='add-korz-btn' type='button' name='submit'>В корзину</button>
+                    <input type='hidden' id='rows' name='id_product' value='{$rowCount}'>";
+                    while($id < $rowCount){
+                        echo "<input type='hidden' id='id_p{$id}' name='id_product' value='{$result['id_product']}'> {$id}";
+                        $id++;
+                        break;
+                    }
+                    echo "<button onclick='addToCart()' class='add-korz-btn' type='button' name='submit'>В корзину</button>
                     
                 </div>
                 </div>

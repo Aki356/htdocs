@@ -31,6 +31,8 @@
             }
             
             $sql = mysqli_query($connection1, "SELECT * FROM product WHERE name_kategory = 6");
+            $rowCount = mysqli_num_rows($sql);
+            echo $rowCount;
             while ($result = mysqli_fetch_array($sql)) {
                 echo "<div class='item'>
                 <div class='item-photo'>
