@@ -1,6 +1,5 @@
 <?php include 'template/head.php'; ?>
 <?php include 'template/nav.php'; ?>
-<?php include 'template/add_korz.php'; ?>
 
     <main>
         <div class="menu-container">
@@ -31,6 +30,8 @@
             }
             
             $sql = mysqli_query($connection1, "SELECT * FROM product WHERE name_kategory = 8");
+            $rowCount = mysqli_num_rows($sql);
+            //echo $rowCount;
             while ($result = mysqli_fetch_array($sql)) {
                 echo "<div class='item'>
                 <div class='item-photo'>
@@ -45,19 +46,20 @@
                 </div>
                 
                 <div class='add-korz'>
-                    <form method='post'>
                     <input type='hidden' name='id_product' value='{$result['id_product']}'>
-                    <button class='add-korz-btn' type='submit' name='submit'>В корзину</button>
-                    </form>
+                    <button id='{$result['id_product']}' onclick='addCart{$result['id_product']}()' class='add-korz-btn' type='submit' name='submit'>В корзину</button>
+                    
                 </div>
                 </div>
-            </div>
             </div>";
+            include 'template/add_korz.php';
+            echo "</div>";
             }
-            ?>    
+            ?>   
             </div>
         </div>
     </main>
     
     
+
 <?php include 'template/footer.php'; ?>	

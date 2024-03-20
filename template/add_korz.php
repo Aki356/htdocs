@@ -1,70 +1,77 @@
+
 <?php
 // function addToCart($productId, $quantity) {
     
 // }
 //if(!empty($_SESSION['login'])){
-    if(isset($_POST['submit'])){
-        // Проверяем, существует ли уже корзина
-        if(isset($_SESSION['cart'])) {
-            $cart = $_SESSION['cart'];
-        }
+
+
+    // от сюда
+    // if(isset($_POST['submit'])){
+    //     // Проверяем, существует ли уже корзина
+    //     if(isset($_SESSION['cart'])) {
+    //         $cart = $_SESSION['cart'];
+    //     }
     
-        // Если корзина не существует, инициализируем массив
-        if(!isset($cart)) {
-            $cart = array();
-        }
-        //Если корзина существует и если она не пуста, 
-        if(isset($cart)){
-            if(!empty($cart)){
-                // foreach($cart as $key => $item){
-                    //if(!empty($item["id_product"])){
-                        //if(in_array($_POST["id_product"], $cart[$key])){
+    //     // Если корзина не существует, инициализируем массив
+    //     if(!isset($cart)) {
+    //         $cart = array();
+    //     }
+    //     //Если корзина существует и если она не пуста, 
+    //     if(isset($cart)){
+    //         if(!empty($cart)){
+    //             // foreach($cart as $key => $item){
+    //                 //if(!empty($item["id_product"])){
+    //                     //if(in_array($_POST["id_product"], $cart[$key])){
                             
-                        //}
+    //                     //}
                         
-                   // }
-                // }
-                for($key=0;$key<count($cart);$key++){
-                    if($cart[$key]["id_product"] == $_POST["id_product"]){
-                        ++$cart[$key]["num_product"]/* = $cart[$key]["num_product"] + 1*/;
-                        $_SESSION["message"] = 'Такой товар в корзине есть '.$cart[$key]["num_product"];
-                        // Сохраняем корзину в сессии
-                        $_SESSION['cart'] = $cart;
-                        header( header: 'Location:'.$_SERVER['PHP_SELF']);
-                        die();
-                    }
-                }
-                for($key=0;$key<count($_SESSION['cart']);$key++){
-                    if(!in_array($_POST["id_product"], $cart[$key])){
-                        // Добавляем товар в корзину
-                        $cart[] = array(
-                            'id_product' => $_POST["id_product"],
-                            'num_product' => 1
-                        );
-                        // Сохраняем корзину в сессии
-                        $_SESSION['cart'] = $cart;
-                        $_SESSION["message"] = 'Товар добавлен в корзину! 1';
-                        header( header: 'Location:'.$_SERVER['PHP_SELF']);
-                        die();
-                    }
-                }
+    //                // }
+    //             // }
+    //             for($key=0;$key<count($cart);$key++){
+    //                 if($cart[$key]["id_product"] == $_POST["id_product"]){
+    //                     ++$cart[$key]["num_product"]/* = $cart[$key]["num_product"] + 1*/;
+    //                     $_SESSION["message"] = 'Такой товар в корзине есть '.$cart[$key]["num_product"];
+    //                     // Сохраняем корзину в сессии
+    //                     $_SESSION['cart'] = $cart;
+    //                     header( header: 'Location:'.$_SERVER['PHP_SELF']);
+    //                     die();
+    //                 }
+    //             }
+    //             for($key=0;$key<count($_SESSION['cart']);$key++){
+    //                 if(!in_array($_POST["id_product"], $cart[$key])){
+    //                     // Добавляем товар в корзину
+    //                     $cart[] = array(
+    //                         'id_product' => $_POST["id_product"],
+    //                         'num_product' => 1
+    //                     );
+    //                     // Сохраняем корзину в сессии
+    //                     $_SESSION['cart'] = $cart;
+    //                     $_SESSION["message"] = 'Товар добавлен в корзину! 1';
+    //                     header( header: 'Location:'.$_SERVER['PHP_SELF']);
+    //                     die();
+    //                 }
+    //             }
                 
                 
-            }
-            else{
-                // Добавляем товар в корзину
-                $cart[] = array(
-                    'id_product' => $_POST["id_product"],
-                    'num_product' => 1
-                );
-                // Сохраняем корзину в сессии
-                $_SESSION['cart'] = $cart;
-                $_SESSION["message"] = 'Товар добавлен в корзину! 0';
-                header( header: 'Location:'.$_SERVER['PHP_SELF']);
-                die();
-            }
-        }
-    }
+    //         }
+    //         else{
+    //             // Добавляем товар в корзину
+    //             $cart[] = array(
+    //                 'id_product' => $_POST["id_product"],
+    //                 'num_product' => 1
+    //             );
+    //             // Сохраняем корзину в сессии
+    //             $_SESSION['cart'] = $cart;
+    //             $_SESSION["message"] = 'Товар добавлен в корзину! 0';
+    //             header( header: 'Location:'.$_SERVER['PHP_SELF']);
+    //             die();
+    //         }
+    //     }
+    // }
+    // до сюда
+
+
 // }
 // else{
 //     if(isset($_POST['submit'])){
@@ -75,3 +82,39 @@
 //     }
 // }
 ?>
+<script>
+    function addCart<?php echo $result['id_product'];?>(){
+        if (sessionStorage.getItem("cart")) {
+            console.log(JSON.parse(sessionStorage.getItem("cart")));
+            cart = new Map(JSON.parse(sessionStorage.getItem("cart"))); //sessionStorage.setItem("cart", input.val());
+            console.log("Массив перенесен в переменную");
+            console.log(cart);
+        }
+        if (typeof cart === 'undefined') {
+            cart = new Map();
+            console.log("Массив создан");
+        }
+        if (sessionStorage.getItem("cart")) {
+            console.log(cart.get(<?php echo $result['id_product'];?>));
+            if(cart.has(<?php echo $result['id_product'];?>)){
+                let item = cart.get(<?php echo $result['id_product'];?>);
+                ++item;
+                cart = cart.set(<?php echo $result['id_product'];?>, item);
+                alert("Такой товар в корзине есть!");
+                sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
+            }
+            if(!cart.has(<?php echo $result['id_product'];?>)){
+                cart = cart.set(<?php echo $result['id_product'];?>, 1);
+                sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
+                alert("Товар добавлен в корзину! 1");
+            }
+        }
+        else{
+            if(!cart.has(<?php echo $result['id_product'];?>)){
+                cart = cart.set(<?php echo $result['id_product'];?>, 1);
+                sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
+                alert("Товар добавлен в корзину! 0");
+            }
+        }
+    }
+</script>

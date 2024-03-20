@@ -139,11 +139,14 @@
 //   }
 //  add();
 // }
+// var a = document.getElementById("title").innerText;
 // if (sessionStorage.getItem("cart")) {
 //   let cart = JSON.parse(sessionStorage.getItem("cart"));
 //   console.log("Массив перенесен в переменную");
 //   // $.POST('korzina.php', cart);
+
 // }
 // else{
+//   document.getElementById("korz__orders").innerHTML = a;
 //   document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
 // }
