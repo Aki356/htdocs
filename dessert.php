@@ -11,7 +11,7 @@
                     echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
                     exit;
                 }
-                if ($_SESSION['message']){
+                if (isset($_SESSION['message'])){
                     echo '<div class="answear">
                     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
                     unset($_SESSION['message']);
@@ -47,11 +47,10 @@
                 </div>
                 
                 <div class='add-korz'>
-                    
-                    <input type='hidden' id='id_p' name='id_product' value='{$result['id_product']}'>
-                    <input type='hidden' id='id_b' name='id_b' value='button_p{$result['id_product']}'>
-                    <button  id='button_p{$result['id_product']}' class='add-korz-btn' type='button' name='submit'>В корзину</button>
-                    
+                    <form method='post'>
+                    <input type='hidden' name='id_product' value='{$result['id_product']}'>
+                    <button class='add-korz-btn' type='submit' name='submit'>В корзину</button>
+                    </form>
                 </div>
                 </div>
             </div>

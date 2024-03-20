@@ -6,7 +6,7 @@ if (!$connection1) {
     echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
     exit;
 }
-if ($_SESSION['message']){
+if (isset($_SESSION['message'])){
     echo '<div class="answear">
     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
     unset($_SESSION['message']);

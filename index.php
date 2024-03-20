@@ -2,7 +2,7 @@
 <?php include 'template/nav.php'; ?>
 <?php include 'template/add_korz.php'; ?>
 <?php
-if ($_SESSION['message']){
+if (isset($_SESSION['message'])){
     echo '<div class="answear">
     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
     unset($_SESSION['message']);

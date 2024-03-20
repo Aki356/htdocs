@@ -48,14 +48,10 @@
                 </div>
                 
                 <div class='add-korz'>
-                    <input type='hidden' id='rows' name='id_product' value='{$rowCount}'>";
-                    while($id < $rowCount){
-                        echo "<input type='hidden' id='id_p{$id}' name='id_product' value='{$result['id_product']}'> {$id}";
-                        $id++;
-                        break;
-                    }
-                    echo "<button onclick='addToCart()' class='add-korz-btn' type='button' name='submit'>В корзину</button>
-                    
+                    <form method='post'>
+                    <input type='hidden' name='id_product' value='{$result['id_product']}'>
+                    <button class='add-korz-btn' type='submit' name='submit'>В корзину</button>
+                    </form>
                 </div>
                 </div>
             </div>

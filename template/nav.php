@@ -78,4 +78,8 @@ $panel_a = '';
                 <!-- <a href="auth.php"><img src="images/account.png" alt=""></a> -->
             </div>
         </div>
+        <?php
+        error_reporting(E_ALL);
+        ini_set('display_errors', 'On');
+        ?>
     </header>

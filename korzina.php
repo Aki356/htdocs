@@ -1,7 +1,7 @@
 <?php include 'template/head.php'; ?>
 <?php include 'template/nav.php'; ?>
 <?php
-if ($_SESSION['message']){
+if (isset($_SESSION['message'])){
     echo '<div class="answear">
     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
     unset($_SESSION['message']);
@@ -32,8 +32,8 @@ if (!$connection1) {
                 
                 <?php
                 if(isset($_SESSION['cart'])) {
-                    // $cart = $_SESSION['cart'];
-                    $cart = 0;?><?php
+                    $cart = $_SESSION['cart'];
+                    // $cart = 0;?><?php
                     print_r($cart);
                     //$product_data_new = array();
                     ?>
@@ -42,13 +42,7 @@ if (!$connection1) {
                     </script>
                     <?php
                     foreach($cart as $key => $item) {
-                        ?>
-                        <script>
-                            pausecontent.push('<?php echo $item[0]; ?>');
-                            alert(pausecontent);
-                        </script>
-                        <?php
-                        $sql = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$item[0]}'");
+                        $sql = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$item["id_product"]}'");
                         while ($result = mysqli_fetch_array($sql)) {
                             // if (!isset($product_data_new[$result['name_product']])) {
                             //     $product_data_new[$result['name_product']] = $result;
@@ -73,14 +67,15 @@ if (!$connection1) {
                                             <p>{$result['weight_product']} {$result['units_product']}</p>
                                         </div>
                                         <div class='calc'>
-                                            <button onclick='this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();' class='calc-count minus'>-</button>
-                                            <input class='calc-num' type='number' value='{$item[1]}'>
-                                            <button onclick='this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();' class='calc-count plus'>+</button>
+                                            <button type='submit' onclick='addCart(); this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();' class='calc-count minus'>-</button>
+                                            <input name='id_product' type='hidden' value='{$item["id_product"]}'>
+                                            <input name='num_product' class='calc-num' type='number' value='{$item["num_product"]}'>
+                                            <button type='submit' onclick='addCart(); this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();' class='calc-count plus'>+</button>
                                         </div>
                                         <div class='korz__order-price'>
                                             <p>";
                                                 $price = $result['price_product'];
-                                                $num_product = $item[1];
+                                                $num_product = $item["num_product"];
                                                 $sum = $price*$num_product;
                                                 echo "{$sum} ₽</p>
                                         </div>
@@ -92,11 +87,11 @@ if (!$connection1) {
                             header( header: 'Location: /korzina.php');
                             die();
                         }
-                        if ($_SESSION['message']){
-                            echo '<div class="answear">
-                            <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
-                            unset($_SESSION['message']);
-                        }
+                        // if ($_SESSION['message']){
+                        //     echo '<div class="answear">
+                        //     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
+                        //     unset($_SESSION['message']);
+                        // }
                         }
                     }
                     
@@ -120,11 +115,11 @@ if (!$connection1) {
                         </form>
                         <?php
                     }
-                    if ($_SESSION['message']){
-                        echo '<div class="answear">
-                        <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
-                        unset($_SESSION['message']);
-                    }
+                    // if ($_SESSION['message']){
+                    //     echo '<div class="answear">
+                    //     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
+                    //     unset($_SESSION['message']);
+                    // }
                     ?>
                     
 
@@ -143,5 +138,5 @@ if (!$connection1) {
 
         </div>
     </main>
-    <script>console.log(JSON.parse(sessionStorage.getItem("cart")));</script>
+    <!-- <script>console.log(JSON.parse(sessionStorage.getItem("cart")));</script> -->
 <?php include 'template/footer.php'; ?>	
