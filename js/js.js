@@ -22,16 +22,7 @@ $('.popular__items').slick({
     dots: true,
     autoplaySpeed: 2000,
   });
-  // $( document ).ready(function(){
-	//   $( "calc" ).submit(function(){
-  //     var formData = $( this ).serialize(); // создаем переменную, которая содержит закодированный набор элементов формы в виде строки
-      
-	//     $.post( "template/add_korz.php", formData, function() { //  передаем и загружаем данные с сервера с помощью HTTP запроса методом POST
-	//       alert("Удачно"); // вставляем в элемент <div> данные, полученные от сервера
-	//     })
-	//   });
-	// });
-  function addCart(){
+  // function addCart(){
     
-  }
+  // }
 })(jQuery);

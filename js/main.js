@@ -15,6 +15,10 @@
           })
         });   
       })(jQuery);
+      if (!sessionStorage.getItem("cart")) {
+        var korz = document.getElementById('korz__order');
+        korz.style.display = 'none';
+      }
       window.addEventListener('load', function () {
         var preloader = document.getElementById('preloader');
         preloader.style.opacity = '0';
@@ -139,14 +143,30 @@
 //   }
 //  add();
 // }
-// var a = document.getElementById("title").innerText;
-// if (sessionStorage.getItem("cart")) {
-//   let cart = JSON.parse(sessionStorage.getItem("cart"));
-//   console.log("Массив перенесен в переменную");
-//   // $.POST('korzina.php', cart);
-
-// }
-// else{
-//   document.getElementById("korz__orders").innerHTML = a;
-//   document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
-// }
+var a = document.getElementById("title").innerText;
+if (sessionStorage.getItem("cart")) {
+  let cart = JSON.parse(sessionStorage.getItem("cart"));
+  console.log("Массив перенесен в переменную");
+  // $.POST('korzina.php', cart);
+  console.log(JSON.parse(cart[0][1]));
+  //цикл для items
+  for(let key = 0; key < cart.length; key++){
+    document.getElementById("korz__order-clear").innerHTML = "<button type='submit' name='itemClear{$key}'><img src='images/korz-clear.png' alt=''></button>";
+    //цикл для item
+    for(let key1 = 0; key1 < JSON.parse(cart[0][1]).length; key1++){
+      console.log(JSON.parse(cart[key][1])[key1][1]);
+      //фото
+      if(key1 == 2){
+        document.getElementById("korz__order-image").innerHTML = "<img src="+JSON.parse(cart[key][1])[key1][1]+" alt=''>";
+      }
+      //имя
+      if(key1 == 1){
+        document.getElementById("korz__order-title").innerHTML = "<p>"+JSON.parse(cart[key][1])[key1][1]+" </p>";
+      }
+    }
+  }
+}
+else{
+  //document.getElementById("korz__orders").innerHTML = a;
+  document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
+}

@@ -31,17 +31,17 @@ if (!$connection1) {
                 <?php include 'test.php'; ?>
                 
                 
-                <div class='korz__order' data-price='110'>
-                    <div class='korz__order-clear'>
+                <div id='korz__order' class='korz__order' data-price='110'>
+                    <div id="korz__order-clear" class='korz__order-clear'>
                     <!-- <form method='post'>
                         <button type='submit' name='itemClear{$key}'><img src='images/korz-clear.png' alt=''></button>
                     </form> -->
                 </div>
                 <div class='korz__container'>
-                    <div class='korz__order-image'>
+                    <div id="korz__order-image" class='korz__order-image'>
                         <!-- <img src={$result['photo_product']} alt=''> -->
                     </div>
-                        <div class='korz__order-title'>
+                        <div id="korz__order-title" class='korz__order-title'>
                             <p><!--{$result['name_product']}--></p>
                         </div>
                         <div class='korz__order-weight'>
@@ -160,7 +160,7 @@ if (!$connection1) {
                 else{
                     ?>
                     <?php 
-                    echo "В корзине пусто."; ?><?php
+                    //echo "В корзине пусто."; ?><?php
                 }
                 ?>
             </div>

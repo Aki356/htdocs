@@ -83,7 +83,10 @@
 // }
 ?>
 <script>
+    // var key_cart = 0;
+    
     function addCart<?php echo $result['id_product'];?>(){
+        //var map = new Map();
         if (sessionStorage.getItem("cart")) {
             console.log(JSON.parse(sessionStorage.getItem("cart")));
             cart = new Map(JSON.parse(sessionStorage.getItem("cart"))); //sessionStorage.setItem("cart", input.val());
@@ -94,24 +97,89 @@
             cart = new Map();
             console.log("Массив создан");
         }
+        //console.log(map.entries());
+        
         if (sessionStorage.getItem("cart")) {
-            console.log(cart.get(<?php echo $result['id_product'];?>));
+            
             if(cart.has(<?php echo $result['id_product'];?>)){
-                let item = cart.get(<?php echo $result['id_product'];?>);
-                ++item;
-                cart = cart.set(<?php echo $result['id_product'];?>, item);
+                map = JSON.parse(cart.get(<?php echo $result['id_product'];?>));
+                console.log(map[6][0]);
+                for (let pair of map) {
+                    // pair - это массив [key, values]
+                    // console.log(pair[0]); // ключ
+                    // console.log(pair[1]); // значение
+                    console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+                    if(pair[0] == "count"){
+                        console.log(pair[0]);
+                        console.log(pair[1]);
+                        let item = pair[1];
+                        ++item;
+                        map = new Map([
+                        ['id', <?php echo $result['id_product'];?>],
+                        ['name', '<?php echo $result['name_product'];?>'],
+                        ['photo', '<?php echo $result['photo_product'];?>'],
+                        ['price', '<?php echo $result['price_product'];?>'],
+                        ['weight', '<?php echo $result['weight_product'];?>'],
+                        ['units', '<?php echo $result['units_product'];?>'],
+                        ['count', item]
+                        ]);
+                    }
+                }
+
+                // map1 = cart.get(2);
+                // let item = map.get("count");
+                // ++item;
+                
+                console.log(map.get("count"));
+                
+                // console.log(cart.get(2));
+                cart = cart.set(<?php echo $result['id_product'];?>, JSON.stringify(Array.from(map.entries())));
                 alert("Такой товар в корзине есть!");
                 sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
             }
             if(!cart.has(<?php echo $result['id_product'];?>)){
-                cart = cart.set(<?php echo $result['id_product'];?>, 1);
+                map = new Map([
+                ['id', <?php echo $result['id_product'];?>],
+                ['name', '<?php echo $result['name_product'];?>'],
+                ['photo', '<?php echo $result['photo_product'];?>'],
+                ['price', '<?php echo $result['price_product'];?>'],
+                ['weight', '<?php echo $result['weight_product'];?>'],
+                ['units', '<?php echo $result['units_product'];?>'],
+                ['count', 1]
+                ]);
+                
+                // for (let pair of map.entries()) {
+                // // pair - это массив [key, values]
+                // // console.log(pair[0]); // ключ
+                // // console.log(pair[1]); // значение
+                // console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+                // }
+                cart = cart.set(<?php echo $result['id_product'];?>, JSON.stringify(Array.from(map.entries())));
+                // ++key_cart;
                 sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
                 alert("Товар добавлен в корзину! 1");
             }
         }
         else{
             if(!cart.has(<?php echo $result['id_product'];?>)){
-                cart = cart.set(<?php echo $result['id_product'];?>, 1);
+                map = new Map([
+                ['id', <?php echo $result['id_product'];?>],
+                ['name', '<?php echo $result['name_product'];?>'],
+                ['photo', '<?php echo $result['photo_product'];?>'],
+                ['price', '<?php echo $result['price_product'];?>'],
+                ['weight', '<?php echo $result['weight_product'];?>'],
+                ['units', '<?php echo $result['units_product'];?>'],
+                ['count', 1]
+                ]);
+                console.log(map.get("count"));
+                // for (let pair of map.entries()) {
+                // // pair - это массив [key, values]
+                // // console.log(pair[0]); // ключ
+                // // console.log(pair[1]); // значение
+                // console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+                // }
+                cart = cart.set(<?php echo $result['id_product'];?>, JSON.stringify(Array.from(map.entries())));
+                // ++key_cart;
                 sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
                 alert("Товар добавлен в корзину! 0");
             }
