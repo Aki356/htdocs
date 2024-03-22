@@ -31,35 +31,35 @@ if (!$connection1) {
                 <?php include 'test.php'; ?>
                 
                 
-                <div id='korz__order' class='korz__order' data-price='110'>
-                    <div id="korz__order-clear" class='korz__order-clear'>
-                    <!-- <form method='post'>
-                        <button type='submit' name='itemClear{$key}'><img src='images/korz-clear.png' alt=''></button>
-                    </form> -->
-                </div>
-                <div class='korz__container'>
-                    <div id="korz__order-image" class='korz__order-image'>
-                        <!-- <img src={$result['photo_product']} alt=''> -->
-                    </div>
-                        <div id="korz__order-title" class='korz__order-title'>
-                            <p><!--{$result['name_product']}--></p>
-                        </div>
-                        <div class='korz__order-weight'>
-                            <p><!--{$result['weight_product']} {$result['units_product']}--></p>
-                        </div>
-                        <div class='calc'>
-                                            <!-- <button type='submit' onclick='addCart(); this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();' class='calc-count minus'>-</button>
-                                            <input name='id_product' type='hidden' value='{$item["id_product"]}'>
-                                            <input name='num_product' class='calc-num' type='number' value='{$item["num_product"]}'>
-                                            <button type='submit' onclick='addCart(); this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();' class='calc-count plus'>+</button> -->
-                                        </div>
-                                        <div class='korz__order-price'>
-                                            <p><!--₽--></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                
+                <!-- <div id='korz__order' class='korz__order' data-price='110'> -->
+                    <!-- <div id="korz__order-clear" class='korz__order-clear'> -->
+                        <!-- <form method='post'>
+                            <button type='submit' name='itemClear{$key}'><img src='images/korz-clear.png' alt=''></button>
+                        </form> -->
+                    <!-- </div> -->
+                    <!-- <div id='korz__container' class='korz__container'> -->
+                        <!-- <div id="korz__order-image" class='korz__order-image'> -->
+                            <!-- <img src={$result['photo_product']} alt=''> -->
+                        <!-- </div> -->
+                        <!-- <div id="korz__order-title" class='korz__order-title'> -->
+                            <!-- <p>{$result['name_product']}</p> -->
+                        <!-- </div> -->
+                        <!-- <div id="korz__order-weight" class='korz__order-weight'> -->
+                            <!-- <p>{$result['weight_product']} {$result['units_product']}</p> -->
+                        <!-- </div> -->
+                        <!-- <div id="calc" class='calc'> -->
+                            <!-- <button type='submit' onclick='this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();' class='calc-count minus'>-</button>
+                            <input name='id_product' type='hidden' value='{$item["id_product"]}'>
+                            <input name='num_product' class='calc-num' type='number' value='{$item["num_product"]}'>
+                            <button type='submit' onclick='this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();' class='calc-count plus'>+</button> -->
+                        <!-- </div> -->
+                        <!-- <div id="korz__order-price" class='korz__order-price'> -->
+                            <!-- <p>₽</p> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+                
+                
                 <?php
                 if(isset($_SESSION['cart'])) {
                     $cart = $_SESSION['cart'];
