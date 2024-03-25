@@ -5,7 +5,8 @@
           $('.mob-menu, .js-blackout').toggleClass('active');
         })
       });   
-    })(jQuery);
+    }
+    )(jQuery);
 
     (function($){
       $(document).ready(function () {
@@ -19,12 +20,93 @@
       //   var korz = document.getElementById('korz__order');
       //   korz.style.display = 'none';
       // }
+      
       window.addEventListener('load', function () {
         var preloader = document.getElementById('preloader');
         preloader.style.opacity = '0';
         preloader.style.transition = 'opacity 1s linear';
         preloader.style.display = 'none';
       });
+
+      const products = document.querySelector('.korz__order_container');
+
+      products.addEventListener('click', ({target}) =>
+      {
+        const product = target.closest('.korz__container');
+        // const price_div = target.closest('.korz__order-price');
+        const total   = product.querySelector('.korz__order-price p span');
+        const countEl = product.querySelector('.calc-num');
+        let   count1   = parseInt(countEl.value);
+        
+        if (target.classList.contains('minus'))
+        {
+          if (count1 > 1)
+          {
+            --count1;
+          }
+        }
+        else if (target.classList.contains('plus'))
+        {
+          if (count1 < 9)
+          {
+            ++count1;
+          }
+        }
+        
+        countEl.value = count1;
+        total.textContent   = parseInt(product.dataset.price) * count1;
+      });
+
+
+      // счётчик количества без изменения цены
+      // $(document).ready(function() {
+      //   $('body').on('click', '.minus, .plus', function(){
+      //     var $row = $(this).closest('.calc');
+      //     var $input = $row.find('.calc-num');
+      //     var $price_row = $(this).closest('.korz__order-price');
+      //     var $price = $price_row.find('.price');
+      //     var step = $row.data('step');
+      //     var price = parseFloat($price.val());
+      //     var val = parseFloat($input.val());
+      //     if ($(this).hasClass('minus')) {
+      //       val -= step;
+      //       price = price * val;
+      //     } else {
+      //       val += step;
+      //       price = price * val;
+      //     }
+      //     $input.val(val);
+      //     $input.change();
+      //     $price.val(price);
+      //     $price.change();
+      //     return false;
+      //   });
+       
+      //   $('body').on('change', '.calc-num, .price', function(){
+      //     var $input = $(this);
+      //     var $row = $input.closest('.calc');
+      //     var step = $row.data('step');
+      //     var $price = $(this);
+      //     // var $price_row = $price.closest('.korz__order-price');
+      //     var min = parseInt($row.data('min'));
+      //     var max = parseInt($row.data('max'));
+      //     var val = parseFloat($input.val());
+      //     if (isNaN(val)) {
+      //       val = step;
+      //       price = price * val;
+      //     } else if (min && val < min) {
+      //       val = min;	
+      //       price = price * val;
+      //     } else if (max && val > max) {
+      //       val = max;	
+      //       price = price * val;
+      //     }
+      //     $input.val(val);
+      //     $price.val(price);
+      //   });
+      // });
+
+      
 // const products = document.querySelector('.korz__orders');
 
 // products.addEventListener('click', ({target}) =>
@@ -144,56 +226,4 @@
 //  add();
 // }
 // var a = document.getElementById("title").innerText;
-if (sessionStorage.getItem("cart")) {
-  let cart = JSON.parse(sessionStorage.getItem("cart"));
-  console.log("Массив перенесен в переменную");
-  // $.POST('korzina.php', cart);
-  console.log(JSON.parse(cart[0][1]));
-  //цикл для items
-  for(let key = 0; key < cart.length; key++){
-    
-    document.getElementById("korz__orders").innerHTML = "<div id='korz__order' class='korz__order' data-price='110'>";
-    document.getElementById("korz__order").innerHTML = '<div id="korz__order-clear" class="korz__order-clear">';
-    document.getElementById("korz__order-clear").innerHTML = "<button type='submit' name='itemClear{$key}'><img src='images/korz-clear.png' alt=''></button></div>";
-    document.getElementById("korz__order").innerHTML = "<div id='korz__container' class='korz__container'>";
-    document.getElementById("korz__container").innerHTML = "<div id='korz__order-image' class='korz__order-image'>";
-    //цикл для item
-    for(let key1 = 0; key1 < JSON.parse(cart[0][1]).length; key1++){
-      console.log(JSON.parse(cart[key][1])[key1][1]);
-      //фото
-      if(key1 == 2){
-        document.getElementById("korz__order-image").innerHTML = "<img src="+JSON.parse(cart[key][1])[key1][1]+" alt=''></div>";
-      }
-      document.getElementById("korz__container").innerHTML = "<div id='korz__order-title' class='korz__order-title'>";
-      //имя
-      if(key1 == 1){
-        document.getElementById("korz__order-title").innerHTML = "<p>"+JSON.parse(cart[key][1])[key1][1]+" </p></div>";
-      }
-      //вес
-      document.getElementById("korz__container").innerHTML = "<div id='korz__order-weight' class='korz__order-weight'>";
-      if(key1 == 4){
-        document.getElementById("korz__order-weight").innerHTML = "<p>"+JSON.parse(cart[key][1])[key1][1]+JSON.parse(cart[key][1])[5][1]+"</p></div>";
-      }
-      document.getElementById("korz__container").innerHTML = "<div id='calc' class='calc'>";
-      //количество в корзине
-      if(key1 == 6){
-        document.getElementById("calc").innerHTML = "<button type='submit' onclick='this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();' class='calc-count minus'>-</button><input name='num_product' class='calc-num' type='number' value='"+JSON.parse(cart[key][1])[key1][1]+"'><button type='submit' onclick='this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();' class='calc-count plus'>+</button></div>";
-      }
-      document.getElementById("korz__container").innerHTML = "<div id='korz__order-price' class='korz__order-price'>";
-      //цена
-      if(key1 == 3){
-        let price = JSON.parse(cart[key][1])[key1][1];
-        let count = JSON.parse(cart[key][1])[6][1];
-        let sum = price * count;
-        console.log(sum);
-        document.getElementById("korz__order-price").innerHTML = "<p>"+sum+" ₽</p></div></div>";
-      }
-      // continue;
-    }
-    document.getElementById("korz__orders").innerHTML = "</div>";
-  }
-}
-else{
-  //document.getElementById("korz__orders").innerHTML = a;
-  document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
-}
+
