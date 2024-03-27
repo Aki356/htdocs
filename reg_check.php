@@ -20,17 +20,19 @@ if(isset($_POST["submit"])) {
   $password      = $_POST["pass"];
   $login      = $_POST["log"];
   // указание директории и имени нового файла на сервере
-  if(!is_null($_POST["Image"])){
-    $photo = 'images/users/'.$_FILES['Image']['name'];
-  }
-  else{
-    $photo = null;
+  if(isset($_POST["Image"])){
+    if(!is_null($_POST["Image"])){
+      $photo = 'images/users/'.$_FILES['Image']['name'];
+    }
+    else{
+      $photo = null;
+    }
   }
   $name      = $_POST["fio"];
   $phone      = $_POST["phone"];
 
   $pwd_hash = hash('sha256', $password);
-  $hash = password_hash($pwd_hash, PASSWORD_DEFAULT);
+  //$hash = password_hash($pwd_hash, PASSWORD_DEFAULT);
   if(!preg_match("/^[a-zA-Z0-9]+$/",$login))
   {
     echo '<div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -64,7 +66,7 @@ if(isset($_POST["submit"])) {
   else{
     if(!empty($login) && !empty($password) /*&& !empty($photo)*/ && !empty($name) && !empty($phone)){
       //$password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-      $result2 = mysqli_query ($connection1, "INSERT INTO users (log_user,pass_user, photo_user, name_user,phone_user) VALUES('$login','$hash', '$photo','$name','$phone')");
+      $result2 = mysqli_query ($connection1, "INSERT INTO users (log_user, pass_user, name_user, phone_user) VALUES('$login','$pwd_hash','$name','$phone')");
       // Проверяем, есть ли ошибки
       if ($result2=='TRUE')
       {

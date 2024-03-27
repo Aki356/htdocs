@@ -15,7 +15,7 @@
                         <input type="text" name="pass" placeholder="Пароль"><br>
                         <input type="text" name="fio" placeholder="ФИО"><br>
                         <!-- <input type="tel" pattern="[+]{1}[0-9]{11,14}" name="phone" placeholder="Телефон"><br> -->
-                        <input type="text" class="mask-phone" placeholder="Номер телефона">
+                        <input type="text" name="phone" class="mask-phone" placeholder="Номер телефона">
                         <input type="file" class="form-control" id="image" name="Image" placeholder="Ваша фотография"/>
                         <button name="submit" type="submit">Зарегистрироваться</button>
                     </form>

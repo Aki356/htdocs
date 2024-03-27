@@ -37,7 +37,7 @@ if (!$connection1) {
             $hash_arr = mysqli_fetch_array($sql_hash);
             $hash_db = $hash_arr['pass_user'];
 
-            if(password_verify($pwd, $hash_db)){
+            if(/*password_verify(*/$pwd/*,*/== $hash_db)/*)*/{
                 $sql = mysqli_query($connection1, "SELECT * FROM users WHERE log_user = '{$login}'");
                     $rowCount = mysqli_num_rows($sql);
                     $result = mysqli_fetch_array($sql);
