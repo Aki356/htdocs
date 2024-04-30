@@ -44,19 +44,22 @@
         console.log("Массив перенесен в переменную");
         const product = target.closest('.korz__container');
         const clear = target.closest('.korz__order-clear');
-        console.log(product);
+        console.log(products);
         
         // const price_div = target.closest('.korz__order-price');
         if (target.classList.contains('clear'))
         {
-          
           let id = parseInt(clear.dataset.id);
-          console.log(id);
-            cart.delete(id);
-            // const total   = product.querySelector('.korz__order');
-            // total.textContent = "";
-            alert("удалено");
-            //console.log(product.dataset.id);
+          //console.log(id);
+          cart.delete(id);
+          const total   = target.closest('.korz__order');
+          total.textContent = "";
+          total.style.display = 'none';
+          if(document.querySelector('.korz__order').innerHTML == ""){
+            document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
+          }
+          alert("удалено");
+          //console.log(document.querySelector('.korz__order').innerHTML);
         }
         
         if (target.classList.contains('minus'))
