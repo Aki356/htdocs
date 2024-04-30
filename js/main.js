@@ -30,59 +30,122 @@
 
       const products = document.querySelector('.korz__order_container');
       var cart;
+      // const productss = document.querySelector('.korz__order-clear');
+      // productss.addEventListener('click', ({target}) =>
+      // {
+      //   cart = new Map(JSON.parse(sessionStorage.getItem("cart")));
+      //   console.log("Массив перенесен в переменную");
+      //   const product = target.closest('.korz__container');
+        
+      // });
       products.addEventListener('click', ({target}) =>
       {
         cart = new Map(JSON.parse(sessionStorage.getItem("cart")));
         console.log("Массив перенесен в переменную");
         const product = target.closest('.korz__container');
+        const clear = target.closest('.korz__order-clear');
+        console.log(product);
+        
         // const price_div = target.closest('.korz__order-price');
-        const total   = product.querySelector('.korz__order-price p span');
-        const countEl = product.querySelector('.calc-num');
-        let   count1   = parseInt(countEl.value);
+        if (target.classList.contains('clear'))
+        {
+          
+          let id = parseInt(clear.dataset.id);
+          console.log(id);
+            cart.delete(id);
+            // const total   = product.querySelector('.korz__order');
+            // total.textContent = "";
+            alert("удалено");
+            //console.log(product.dataset.id);
+        }
         
         if (target.classList.contains('minus'))
         {
+          const countEl = product.querySelector('.calc-num');
+          let   count1   = parseInt(countEl.value);
           if (count1 > 1)
           {
             --count1;
           }
+          countEl.value = count1;
+          const total   = product.querySelector('.korz__order-price p span');
+          total.textContent   = parseInt(product.dataset.price) * count1;
+          let id = parseInt(product.dataset.id);
+          var map = JSON.parse(cart.get(id));
+          for (let pair of map) {
+            // pair - это массив [key, values]
+            // console.log(pair[0]); // ключ
+            // console.log(pair[1]); // значение
+            console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+            if(pair[0] == "count"){
+                // console.log(pair[0]);
+                // console.log(pair[1]);
+                pair[1] = count1;
+                console.log(id);
+                var map = new Map([
+                  ['id', JSON.parse(cart.get(id))[0][1]],
+                  ['name', JSON.parse(cart.get(id))[1][1]],
+                  ['photo', JSON.parse(cart.get(id))[2][1]],
+                  ['price', JSON.parse(cart.get(id))[3][1]],
+                  ['weight', JSON.parse(cart.get(id))[4][1]],
+                  ['units', JSON.parse(cart.get(id))[5][1]],
+                  ['count', pair[1]]
+                  ]);
+            }
+            
+        }
+          cart = cart.set(id, JSON.stringify(Array.from(map.entries())));
         }
         else if (target.classList.contains('plus'))
         {
+          const countEl = product.querySelector('.calc-num');
+          let   count1   = parseInt(countEl.value);
           // if (count1 < 9)
           // {
             ++count1;
           // }
+          countEl.value = count1;
+          const total   = product.querySelector('.korz__order-price p span');
+          total.textContent   = parseInt(product.dataset.price) * count1;
+          let id = parseInt(product.dataset.id);
+          var map = JSON.parse(cart.get(id));
+          for (let pair of map) {
+            // pair - это массив [key, values]
+            // console.log(pair[0]); // ключ
+            // console.log(pair[1]); // значение
+            //console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+            if(pair[0] == "count"){
+                // console.log(pair[0]);
+                // console.log(pair[1]);
+                pair[1] = count1;
+                console.log(JSON.parse(cart.get(id))[5][1]);
+                var map = new Map([
+                  ['id', JSON.parse(cart.get(id))[0][1]],
+                  ['name', JSON.parse(cart.get(id))[1][1]],
+                  ['photo', JSON.parse(cart.get(id))[2][1]],
+                  ['price', JSON.parse(cart.get(id))[3][1]],
+                  ['weight', JSON.parse(cart.get(id))[4][1]],
+                  ['units', JSON.parse(cart.get(id))[5][1]],
+                  ['count', pair[1]]
+                  ]);
+            }
+            
         }
-        countEl.value = count1;
-        total.textContent   = parseInt(product.dataset.price) * count1;
-        var id = parseInt(product.dataset.id);
-        var map = JSON.parse(cart.get(id));
-        for (let pair of map) {
-          // pair - это массив [key, values]
-          // console.log(pair[0]); // ключ
-          // console.log(pair[1]); // значение
-          console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
-          if(pair[0] == "count"){
-              // console.log(pair[0]);
-              // console.log(pair[1]);
-              pair[1] = count1;
-              console.log(JSON.parse(cart.get(id))[5][1]);
-              var map = new Map([
-                ['id', JSON.parse(cart.get(id))[0][1]],
-                ['name', JSON.parse(cart.get(id))[1][1]],
-                ['photo', JSON.parse(cart.get(id))[2][1]],
-                ['price', JSON.parse(cart.get(id))[3][1]],
-                ['weight', JSON.parse(cart.get(id))[4][1]],
-                ['units', JSON.parse(cart.get(id))[5][1]],
-                ['count', pair[1]]
-                ]);
-          }
-      }
-        cart = cart.set(id, JSON.stringify(Array.from(map.entries())));
+          cart = cart.set(id, JSON.stringify(Array.from(map.entries())));
+        }
+        
         sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
-        console.log(JSON.parse(cart.get(id))[6][1]);
+
+        //console.log(JSON.parse(cart.get(9)));
       });
+      // const productss = document.querySelector('.korz__order-clear');
+      // productss.addEventListener('click', ({target}) =>
+      // {
+      //   cart = new Map(JSON.parse(sessionStorage.getItem("cart")));
+      //   console.log("Массив перенесен в переменную");
+      //   const product = target.closest('.korz__container');
+        
+      // });
 
 
       // счётчик количества без изменения цены
