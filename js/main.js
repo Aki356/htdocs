@@ -28,8 +28,15 @@
         preloader.style.display = 'none';
       });
 
+if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
+  console.log(document.querySelector("div__empty_korz"));
+  document.getElementById("div__empty_korz").style.display = 'none';
+}
+
+
       const products = document.querySelector('.korz__order_container');
       var cart;
+      var is_empty = 0;
       // const productss = document.querySelector('.korz__order-clear');
       // productss.addEventListener('click', ({target}) =>
       // {
@@ -50,16 +57,35 @@
         if (target.classList.contains('clear'))
         {
           let id = parseInt(clear.dataset.id);
-          //console.log(id);
+          
           cart.delete(id);
           const total   = target.closest('.korz__order');
-          total.textContent = "";
-          total.style.display = 'none';
-          if(document.querySelector('.korz__order').innerHTML == ""){
-            document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
+          const order_btn = document.querySelector(".order-btn__container");
+          total.remove();
+          if(cart.size === 0){
+            order_btn.remove();
+            document.getElementById("div__empty_korz").style.display = "block";
+              document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
           }
+          // for(let key = 0; key < cart.size; key++){
+          //   console.log(total.textContent);
+          //   if(total.textContent == ""){
+              
+          //     document.querySelector(".order-btn__container").textContent = "";
+              // document.getElementById("div__empty_korz").style.display = "block";
+              // document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
+          //     console.log(document.getElementById('korz__order'+key+''));
+          //     continue;
+          //   }
+          //   else{
+          //     document.getElementById("div__empty_korz").style.display = "none";
+          //     document.getElementById("empty_korz").innerHTML = "";
+          //     document.querySelector(".order-btn__container").innerHTML = '<button class="order-btn" name="submit" type="submit">Оформить заказ</button>';
+          //     console.log(document.querySelector(".order-btn__container").innerHTML);
+          //     alert("есть");
+          //   }
+          // }
           alert("удалено");
-          //console.log(document.querySelector('.korz__order').innerHTML);
         }
         
         if (target.classList.contains('minus'))
