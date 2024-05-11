@@ -1,12 +1,6 @@
 <?php include 'template/head.php'; ?>
 <?php include 'template/nav.php'; ?>
-<?php
-if (isset($_SESSION['message'])){
-    echo '<div class="answear">
-    <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
-    unset($_SESSION['message']);
-}
-?>
+<?php include 'test.php'; ?>
 <?php
 include ("connect.php");
 if (!$connection1) {
@@ -30,7 +24,7 @@ if (!$connection1) {
                 <h3>Ваш заказ</h3>
                 <?php //include 'test.php'; ?>
                 
-                <div class="korz__order_cont"></div><div id="korz__order_container" class="korz__order_container"></div>
+                <div id="korz__order_container" class="korz__order_container"></div>
                 <div id="div__empty_korz" class="empty_korz">
                     <p id="empty_korz"></p>
                 </div>
@@ -51,6 +45,7 @@ if (!$connection1) {
     //цикл для items
     // var i = 0;
     if(cart.length !== 0){
+        document.getElementById("korz__order_container").innerHTML += '<div class="order-btn__container"><form id="orderForm" method="post"></form></div>';
         for(let key = 0; key < cart.length; key++){
             
             
@@ -60,7 +55,7 @@ if (!$connection1) {
                     document.getElementById("korz__order_container").innerHTML += "<div id='korz__order"+key+"' class='korz__order'></div>";
                     // document.getElementById("korz__order"+key).innerHTML = '';
                     // document.getElementById("korz__order-clear"+key).innerHTML = "<button type='submit'><img src='images/korz-clear.png' alt=''></button>";
-                    document.getElementById("korz__order"+key).innerHTML += "<div id='korz__order-clear"+key+"' class='korz__order-clear' data-id='"+JSON.parse(cart[key][1])[0][1]+"'><button class='clear' type='submit'>X</button></div><div id='korz__container"+key+"' class='korz__container' data-price='"+JSON.parse(cart[key][1])[3][1]+"' data-id='"+JSON.parse(cart[key][1])[0][1]+"'></div>";
+                    document.getElementById("korz__order"+key).innerHTML += "<div id='korz__order-clear"+key+"' class='korz__order-clear' data-id='"+JSON.parse(cart[key][1])[0][1]+"'><button class='clear' type='submit'>X</button></div><div id='korz__container"+key+"' class='korz__container' data-keycart='"+key+"' data-price='"+JSON.parse(cart[key][1])[3][1]+"' data-id='"+JSON.parse(cart[key][1])[0][1]+"'></div>";
                     document.getElementById("korz__container"+key).innerHTML += "<div id='korz__order-image"+key+"' class='korz__order-image'></div><div id='korz__order-title"+key+"' class='korz__order-title'></div><div id='korz__order-weight"+key+"' class='korz__order-weight'></div><div id='calc"+key+"' class='calc' data-step='1' data-min='1' data-max='100'></div><div id='korz__order-price"+key+"' class='korz__order-price'></div>";
                     // document.getElementById("korz__container").innerHTML = "<div id='korz__order-title' class='korz__order-title'></div>";
                     // document.getElementById("korz__container").innerHTML = "<div id='korz__order-weight' class='korz__order-weight'></div>";
@@ -98,7 +93,7 @@ if (!$connection1) {
                     //количество в корзине
                     // if(key1 == 6){
                     //     console.log(JSON.parse(cart[key][1])[key1][1]);
-                        document.getElementById("calc"+key).innerHTML += "<button type='submit' class='calc-count minus'>-</button><input name='num_product' class='calc-num' type='number' step='1' value='"+JSON.parse(cart[key][1])[6][1]+"'><button type='submit' class='calc-count plus'>+</button>";
+                        document.getElementById("calc"+key).innerHTML += "<button type='submit' class='calc-count minus'>-</button><div id='calc-num"+key+"'><input id='calc-num_input"+key+"' name='num_product"+key+"' class='calc-num' type='number' step='1' value='"+JSON.parse(cart[key][1])[6][1]+"'></div><button type='submit' class='calc-count plus'>+</button>";
                     // }
                     
                 // document.getElementById("korz__order_container").innerHTML = "</div>";
@@ -153,8 +148,16 @@ if (!$connection1) {
             //         sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
             //     }
             // }
+
+
+            // cart = new Map(JSON.parse(sessionStorage.getItem("cart")));
+            //console.log(document.getElementById("calc-num"+key).value);
+            document.getElementById("orderForm").innerHTML += '<input id="idForm'+key+'" name="idForm'+key+'" type="number" value="'+JSON.parse(cart[key][1])[0][1]+'">';
+            document.getElementById("orderForm").innerHTML += document.getElementById("calc-num"+key).innerHTML;
+            document.getElementById("idForm"+key).hidden = true;
+            document.getElementById("calc-num_input"+key).hidden = true;
         }
-        document.getElementById("korz__order_container").innerHTML += '<div class="order-btn__container"><button class="order-btn" name="submit" type="submit">Оформить заказ</button></div>';
+        document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><button class="order-btn" name="submit" type="submit">Оформить заказ</button>';
         
     }
         if(cart.length === 0){
@@ -165,5 +168,10 @@ if (!$connection1) {
     //document.getElementById("korz__orders").innerHTML = a;
     document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
     }
+    if(sessionStorage.getItem("message")){
+        alert(sessionStorage.getItem("message"));
+        sessionStorage.removeItem("message");
+    }
     </script>
+    
         <?php include 'template/footer.php'; ?>	

@@ -1,6 +1,13 @@
 <?php
+include ("connect.php");
+
 if(isset($_POST["submit"])){
-    $cart = $_SESSION['cart'];
+    if(!empty($_SESSION['login'])){
+    $cart = array();
+    for($key=0; $key<(int)$_POST["sizeForm"]; $key++){
+        $cart[(int)$_POST["idForm".$key]] = (int)$_POST["num_product".$key];
+    }
+    var_dump($cart);
     $month_list = array(
         1  => 'января',
         2  => 'февраля',
@@ -30,45 +37,64 @@ if(isset($_POST["submit"])){
         $num = reset($numbers);
     }
     foreach($cart as $key => $item) {
-        $totalPrise = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$item['id_product']}'");
+        $totalPrise = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$key}'");
         while ($result = mysqli_fetch_array($totalPrise)) {
             $price = $result['price_product'];
-            $num_product = $item['num_product'];
+            $num_product = $item;
             $sum = $price*$num_product;
             
             if($rowCount == 0){
-                if(!empty($num) && !empty($_SESSION['id_user']) && !empty($item["id_product"]) && !empty($item["num_product"]) && !empty($date) && !empty($time) && !empty($sum)){
-                    echo $num.' '.$_SESSION['id_user'].' '.$item["id_product"].' '.$item["num_product"].' '.$date.' '.$time.' '.$sum;
-                    $order = mysqli_query($connection1, "INSERT INTO orders (numId_order, id_user, id_products, count_order, date_order, time_order, totalPrise_order) VALUES('{$num}', '{$_SESSION['id_user']}', '{$item["id_product"]}', '{$item["num_product"]}', '{$date}', '{$time}', '{$sum}')");
+                if(!empty($num) && !empty($_SESSION['id_user']) && !empty($key) && !empty($item) && !empty($date) && !empty($time) && !empty($sum)){
+                    echo $num.' '.$_SESSION['id_user'].' '.$key.' '.$item.' '.$date.' '.$time.' '.$sum;
+                    $order = mysqli_query($connection1, "INSERT INTO orders (numId_order, id_user, id_products, count_order, date_order, time_order, totalPrise_order) VALUES('{$num}', '{$_SESSION['id_user']}', '{$key}', '{$item}', '{$date}', '{$time}', '{$sum}')");
                     if($order == "TRUE"){
-                        $popular = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$item["id_product"]}'");
+                        $popular = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$key}'");
                         while($res = mysqli_fetch_array($popular)){
-                            if($item["id_product"] == $res["id_product"]){
-                                $popular_product = $res["popular_product"] + $item["num_product"];
-                                mysqli_query($connection1, "UPDATE product SET popular_product = '{$popular_product}' WHERE product.id_product = {$item["id_product"]}");
+                            if($key == $res["id_product"]){
+                                $popular_product = $res["popular_product"] + $item;
+                                mysqli_query($connection1, "UPDATE product SET popular_product = '{$popular_product}' WHERE product.id_product = {$key}");
                             }
                         }
                         
-                        $_SESSION["messege"] = "Заказ успешно оформлен!";
-                        unset($_SESSION['cart'][$key]);
+                        // $_SESSION["messege"] = "Заказ успешно оформлен!";
+                        ?>
+                        <script>
+                            sessionStorage.setItem("message", "Успешно оформлен");sessionStorage.removeItem("cart");</script>
+                        <?php
+                        
                     }
                     else{
-                        $_SESSION["messege"] = "Возникла ошибка. Заказ не был оформлен.";
-                        header( header: 'Location: /korzina.php');
-                        die();
+                        ?>
+                        <script>
+                            sessionStorage.setItem("message", "Возникла ошибка. Заказ не был оформлен.");
+                        </script>
+                        <?php
+                        
+                        // header( header: 'Location: /korzina.php');
+                        // die();
                     }
                 }
                 else{
-                    $_SESSION["messege"] = "Возникла ошибка.";
-                    header( header: 'Location: /korzina.php');
-                    die();
+                    ?>
+                        <script>
+                            sessionStorage.setItem("message", "Возникла ошибка.");
+                        </script>
+                        <?php
+                    // header( header: 'Location: /korzina.php');
+                    // die();
                 }
             }
         }
         
     }
-    header( header: 'Location: /korzina.php');
-    die();
+}
+else {
+    ?>
+    <script>
+        sessionStorage.setItem("message", "Сначала войдите в аккаунт, чтобы оформить заказ.");
+    </script>
+    <?php
+                    }
 }
 
 ?>

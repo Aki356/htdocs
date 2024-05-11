@@ -50,6 +50,7 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
         cart = new Map(JSON.parse(sessionStorage.getItem("cart")));
         console.log("Массив перенесен в переменную");
         const product = target.closest('.korz__container');
+        // const form = target.closest('.korz__container');
         const clear = target.closest('.korz__order-clear');
         console.log(products);
         
@@ -91,12 +92,20 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
         if (target.classList.contains('minus'))
         {
           const countEl = product.querySelector('.calc-num');
+          
+          //document.getElementById("calc-num"+key).innerText
           let   count1   = parseInt(countEl.value);
           if (count1 > 1)
           {
             --count1;
           }
           countEl.value = count1;
+          countEl.setAttribute('value', count1);
+          //console.log(parseInt(product.dataset.keycart));
+          const countForm = document.getElementById('calc-num_input'+product.dataset.keycart);
+          countForm.setAttribute('value', count1);
+          
+          
           const total   = product.querySelector('.korz__order-price p span');
           total.textContent   = parseInt(product.dataset.price) * count1;
           let id = parseInt(product.dataset.id);
@@ -134,6 +143,9 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
             ++count1;
           // }
           countEl.value = count1;
+          countEl.setAttribute('value', count1);
+          const countForm = document.getElementById('calc-num_input'+product.dataset.keycart);
+          countForm.setAttribute('value', count1);
           const total   = product.querySelector('.korz__order-price p span');
           total.textContent   = parseInt(product.dataset.price) * count1;
           let id = parseInt(product.dataset.id);
@@ -161,6 +173,7 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
             
         }
           cart = cart.set(id, JSON.stringify(Array.from(map.entries())));
+          console.log(products.querySelector('.calc-num'));
         }
         
         sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
