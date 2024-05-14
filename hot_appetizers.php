@@ -46,10 +46,10 @@
                 </div>
                 
                 <div class='add-korz'>
-                    <form method='post'>
+                    
                     <input type='hidden' name='id_product' value='{$result['id_product']}'>
                     <button id='{$result['id_product']}' onclick='addCart{$result['id_product']}()' class='add-korz-btn' type='submit' name='submit'>В корзину</button>
-                    </form>
+                    
                 </div>
                 </div>
             </div>";

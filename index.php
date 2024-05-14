@@ -2,11 +2,11 @@
 <?php include 'template/nav.php'; ?>
 <?php include 'template/add_korz.php'; ?>
 <?php
-if (isset($_SESSION['message'])){
-    echo '<div class="answear">
-    <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
-    unset($_SESSION['message']);
-}
+// if (isset($_SESSION['message'])){
+//     echo '<div class="answear">
+//     <div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div></div>';
+//     unset($_SESSION['message']);
+// }
 ?>
 
 <?php
@@ -79,13 +79,13 @@ if (!empty($_POST))
                     //$sql = mysqli_query($connection1, "SELECT * FROM product");
                     
                     //$srt = mysqli_query($connection1, "SELECT popular_product, id_product FROM product");
-                    $popular_p = array();
-                    $id_p = array();
-                    $photo_p = array();
-                    $name_p = array();
-                    $price_p = array();
-                    $weight_p = array();
-                    $units_p = array();
+                    // $popular_p = array();
+                    // $id_p = array();
+                    // $photo_p = array();
+                    // $name_p = array();
+                    // $price_p = array();
+                    // $weight_p = array();
+                    // $units_p = array();
                     //$arr_data = $res->fetch_all();
                     //$rs = rsort($arr_data);
                     // while($res = mysqli_fetch_array($srt)){
@@ -104,38 +104,39 @@ if (!empty($_POST))
                     // }
                     //print_r($popular_p);
                     //rsort($popular_p);
-                    for($i = 0; $i < 9; $i++){
-                        $sql = mysqli_query($connection1, "SELECT * FROM product ORDER BY product.popular_product DESC");
+                    //for($i = 0; $i < 9; $i++){
+                        $sql = mysqli_query($connection1, "SELECT * FROM product ORDER BY product.popular_product DESC LIMIT 9");
                         while ($result = mysqli_fetch_array($sql)) {
-                            $id_p[] = $result['id_product'];
-                            $photo_p[] = $result['photo_product'];
-                            $name_p[] = $result['name_product'];
-                            $price_p[] = $result['price_product'];
-                            $weight_p[] = $result['weight_product'];
-                            $units_p[] = $result['units_product'];
-                        }
-                        echo "<div class='popular__item'>
+                            // $id_p[] = $result['id_product'];
+                            // $photo_p[] = $result['photo_product'];
+                            // $name_p[] = $result['name_product'];
+                            // $price_p[] = $result['price_product'];
+                            // $weight_p[] = $result['weight_product'];
+                            // $units_p[] = $result['units_product'];
+                            echo "<div class='popular__item'>
                             <div class='item-photo'>
-                            <img src={$photo_p[$i]} >
+                            <img src={$result['photo_product']} >
                             </div>
                             <div class='item-info'>
-                            <h3>{$name_p[$i]}</h3>
+                            <h3>{$result['name_product']}</h3>
                             <div>
                             <div class='price-weight'>
-                                <h4>{$price_p[$i]} ₽</h4>
-                                <p>{$weight_p[$i]} {$units_p[$i]}</p>
+                                <h4>{$result['price_product']} ₽</h4>
+                                <p>{$result['weight_product']} {$result['units_product']}</p>
                             </div>
                             
                             <div class='add-korz'>
-                                <form method='post'>
-                                <input type='hidden' name='id_product' value='{$id_p[$i]}'>
-                                <button class='add-korz-btn' type='submit' name='submit'>В корзину</button>
-                                </form>
+                                
+                                <input type='hidden' name='id_product' value='{$result['id_product']}'>
+                                <button id='{$result['id_product']}' onclick='addCart{$result['id_product']}()' class='add-korz-btn' type='submit' name='submit'>В корзину</button>
+                                
                             </div>
                             </div>
-                            </div></a>
-                            </div>";
-                    }
+                            </div></a>";
+                            include 'template/add_korz.php';
+                            echo "</div>";
+                        }
+                    //}
                     ?>    
                     <!-- <div id="item1" class="popular__item">
                         <div class="popular__item-photo">
@@ -357,4 +358,9 @@ if (!empty($_POST))
 
 
     </main>
+    <script>
+    if(sessionStorage.getItem("message")){
+        alert(sessionStorage.getItem("message"));
+        sessionStorage.removeItem("message");
+    }</script>
 <?php include 'template/footer.php'; ?>
