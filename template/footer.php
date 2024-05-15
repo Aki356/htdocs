@@ -1,4 +1,10 @@
-
+<!-- Модальное окно -->
+<div id="modal" class="modal" onclick="hideModal();">
+      <span class="close">&times;</span>
+      <div class="modal-content">
+        <img id="modal-image">
+      </div>
+    </div>
 <footer>
         <div class="bottom">
             <div class="footer__logo">
@@ -22,6 +28,26 @@
     <script src="https://snipp.ru/cdn/maskedinput/jquery.maskedinput.min.js"></script>
     <script src="js/main.js"> </script>
     <script src="js/js.js"></script>
+    <script>
+        // Получаем элементы модального окна и изображения
+        const modal = document.getElementById("modal");
+        const modalImage = document.getElementById("modal-image");
+
+        // Отображаем модальное окно и устанавливаем источник изображения
+        function displayModal(img)
+        {
+            modal.style.display = "block";
+            modalImage.src = img.src;
+        }
+
+        // Скрываем содержимое модального окна, если пользователь кликнул вне его
+        function hideModal()
+        {  
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
     <script>
         $('.mask-phone').mask('+7 (999) 999-99-99');
     </script>

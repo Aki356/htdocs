@@ -120,6 +120,43 @@ body{
       transform: rotate(360deg);
     }
   } 
+
+/* Стили для модального окна */
+.modal {
+    display: none;
+    /* По умолчанию скрыто */
+    position: fixed;
+    /* Фиксированное положение */
+    z-index: 1;
+    /* Верхний уровень */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Полная ширина */
+    height: 100%;
+    /* Полная высота */
+    overflow: auto;
+    /* Включить прокрутку, если необходимо */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Черный цвет с прозрачностью */
+}
+
+.modal-content {
+    margin: 100px auto 300px;
+    display: block;
+    width: 35%;
+    max-width: 700px;
+    background-color: #FAF7F4;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+}
+
+
 .container{
     width: 1300px;  /*Ширина блока */
     margin: 0 auto; /*Блок по центру */
@@ -148,13 +185,14 @@ body{
     margin-top: 100px;
 }
 .item-info{
-    height: 230px;
+    height: 160px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.item-info h3{
-    margin: auto;
+.item-name{
+    margin: auto auto;
 }
 
 .add-korz .calc-count{
@@ -282,7 +320,7 @@ body{
 header{
     background: #F6EFEA;
     height: 70px;
-    border-bottom: #1C1B17 solid 2px;
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
     position: fixed;
     z-index: 600;
     width: 100%;
@@ -446,7 +484,7 @@ header{
         width: 100%;
         height: 388px;
     border-radius: 15px;
-    
+    cursor: pointer;
 }
 .slyder__photos .slick-dots li button {
     width: 30px;
@@ -458,7 +496,7 @@ header{
 }
 .popular{
     width: 100%;
-    height: 950px;/*в блоках высоту ставить нельзя*/
+    /*height: 950px;в блоках высоту ставить нельзя*/
     background-color: #1C1B17;
 }
 .popular__top{
@@ -471,7 +509,7 @@ header{
 }
 .popular .title h2{
     font-family: Tahoma;
-    font-size: 64px;
+    font-size: 50px;
     text-align: center;
     color: #FAF7F4;
     font-style: normal;
@@ -479,7 +517,7 @@ header{
     line-height: normal;
 }
 .popular__items{
-    padding-top: 70px;
+    margin-top: 45px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -491,11 +529,12 @@ header{
     border-radius: 25px;
     margin-right: 20px;
     margin-left: 20px;
+    margin-bottom: 45px;
 }
 .popular__item > .item-photo img{
     width: 100%;
     border-radius: 25px;
-    height: 366px;
+    height: 305px;
     object-fit: cover;
 }
 .popular__item > .item-info{
@@ -503,11 +542,11 @@ header{
     flex-direction: column;
     justify-content: space-between;
 }
-.popular__item > .item-info h3{
+.popular__item > .item-info > .item-name h3{
     
     font-family: Forum;
     color: #1C1B17;
-    font-size: 36px;
+    font-size: 26px;
     text-align: center;
     line-height: 1;
 }
@@ -517,13 +556,13 @@ header{
     padding-bottom: 10px;
 }
 .popular__item .price-weight h4{
-    font-size: 30px;
+    font-size: 22px;
     font-weight: bold;
     color: #1C1B17;
 }
 .popular__item .price-weight p{
     color: #bdb4a0;
-    font-size: 22px;
+    font-size: 20px;
 }
 .popular__calc{
     display: flex;
@@ -608,18 +647,18 @@ header{
     width: 100%;
 }
 
-.gift .slick-prev:before, .gift .slick-next:before {
+.main-hall .slick-prev:before, .main-hall .slick-next:before {
     font-size: 30px;
     color:#AF955C;
 }
-.gift .slick-prev, .gift .slick-next {
+.main-hall .slick-prev, .main-hall .slick-next {
     width: 30px;
     height: 30px;
 }
-.gift .slick-prev {
+.main-hall .slick-prev {
     left: -30px;
 }
-.gift .slick-next {
+.main-hall .slick-next {
     right: -30px;
 }
 
@@ -642,8 +681,14 @@ header{
 .events__item{
     padding-top: 30px;
     width: 30%;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 .events__item img{
+    object-fit: cover;
+    cursor: pointer;
+    width: 100%;
+    height: 380px;
     border-radius: 25px;
     border: 3px solid #AF955C;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -669,12 +714,16 @@ header{
 .main-hall__item{
     padding-top: 30px;
     width: 30%;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 .main-hall__item img{
+    object-fit: cover;
+    width: 100%;
+    height: 380px;
     border-radius: 25px;
     border: 3px solid #AF955C;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 100%;
 }
 
 footer{
@@ -1097,6 +1146,10 @@ footer{
 .order-btn__container{
     display: flex;
     justify-content: center;
+    position: fixed;
+    z-index: 500;
+    bottom: 265px;
+    left: 1330px;
 }
 .korz__order-clear{
     width: 25px;
@@ -1188,7 +1241,7 @@ footer{
     justify-content: center;
 }
 .order-btn{
-    width: 60%;
+    width: 75%;
     padding-top: 18px;
     padding-bottom: 18px;
     border: none;
@@ -1199,8 +1252,8 @@ footer{
     margin-bottom: 28px;
     color: #FAF7F4;
     text-align: center;
-    font-family: Forum;
-    font-size: 36px;
+    font-family: Tahoma;
+    font-size: 25px;
     font-style: normal;
     font-weight: 400;
 }

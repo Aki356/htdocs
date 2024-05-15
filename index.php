@@ -50,13 +50,13 @@ if (!empty($_POST))
                 </div>
                 <div class="slyder__photos">
                     <div class="slyder__photo">
-                        <img src="images/slyd1.jpg" alt="">
+                        <img src="images/slyd1.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                     </div>
                     <div class="slyder__photo">
-                        <img src="images/slyd2.jpg" alt="">
+                        <img src="images/slyd2.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                     </div>
                     <div class="slyder__photo">
-                        <img src="images/slyd3.jpg" alt="">
+                        <img src="images/slyd3.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                     </div>
                 </div>
             </div>
@@ -118,7 +118,8 @@ if (!empty($_POST))
                             <img src={$result['photo_product']} >
                             </div>
                             <div class='item-info'>
-                            <h3>{$result['name_product']}</h3>
+                            <div class='item-name'>
+                            <h3>{$result['name_product']}</h3></div>
                             <div>
                             <div class='price-weight'>
                                 <h4>{$result['price_product']} ₽</h4>
@@ -296,22 +297,7 @@ if (!empty($_POST))
                     </div>
                     <div class="gift__items"> 
                         <div class="gift__item">
-                            <img src="images/gift.jpg" alt="">
-                        </div>
-                        <div class="gift__item">
-                            <img src="images/gift.jpg" alt="">
-                        </div>
-                        <div class="gift__item">
-                            <img src="images/gift.jpg" alt="">
-                        </div>
-                        <div class="gift__item">
-                            <img src="images/gift.jpg" alt="">
-                        </div>
-                        <div class="gift__item">
-                            <img src="images/gift.jpg" alt="">
-                        </div>
-                        <div class="gift__item">
-                            <img src="images/gift.jpg" alt="">
+                            <img src="images/gift.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                         </div>
                     </div>
                 </div>
@@ -321,13 +307,13 @@ if (!empty($_POST))
                     </div>
                     <div class="events__items">
                         <div class="events__item">
-                            <img src="images/event1.jpg" alt="">
+                            <img src="images/event1.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                         </div>
                         <div class="events__item">
-                            <img src="images/event2.jpg" alt="">
+                            <img src="images/event2.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                         </div>
                         <div class="events__item">
-                            <img src="images/event3.jpg" alt="">
+                            <img src="images/event3.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                         </div>
                     </div>
                 </div>
@@ -337,13 +323,28 @@ if (!empty($_POST))
                     </div>
                     <div class="main-hall__items">
                         <div class="main-hall__item">
-                            <img src="images/main-hall1.jpg" alt="">
+                            <img src="images/main-hall1.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                         </div>
                         <div class="main-hall__item">
-                            <img src="images/main-hall2.jpg" alt="">
+                            <img src="images/main-hall2.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                         </div>
                         <div class="main-hall__item">
-                            <img src="images/main-hall3.jpg" alt="">
+                            <img src="images/main-hall3.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
+                        </div>
+                        <div class="main-hall__item">
+                            <img src="images/main-hall4.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
+                        </div>
+                        <div class="main-hall__item">
+                            <img src="images/main-hall5.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
+                        </div>
+                        <div class="main-hall__item">
+                            <img src="images/main-hall6.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
+                        </div>
+                        <div class="main-hall__item">
+                            <img src="images/main-hall7.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
+                        </div>
+                        <div class="main-hall__item">
+                            <img src="images/main-hall8.jpg" onclick="displayModal(this);" alt="Ресторан La Rose DOR">
                         </div>
                     </div>
                 </div>

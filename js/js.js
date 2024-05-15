@@ -6,7 +6,7 @@ $('.popular__items').slick({
     autoplaySpeed: 2000,
   });
 
-  $('.gift__items').slick({
+  $('.main-hall__items').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: false,

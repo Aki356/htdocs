@@ -23,7 +23,7 @@ if(!empty($_SESSION['photo'])){
 else{
     $photo_user = "images/account.png";
 }
-$panel_a = '';
+//$panel_a = '';
 
 ?>
 <div class="mob-btn">
