@@ -45,7 +45,7 @@ if (!empty($_POST))
         <div class="slyder">
             <div class="container container-flex">
                 <div class="slyder__info">
-                    <h1>Ресторан <span>La Rose DOR</span> – 15 лет гастрономического удовольствия!</h1>
+                    <h1>Ресторан <span>La Rose DOR</span> – 16 лет гастрономического удовольствия!</h1>
                     <p>Вспомните все, что Вы знали о Франции. В ресторане La Rose D’OR Вы узнаете о ней чуть больше!</p>
                 </div>
                 <div class="slyder__photos">

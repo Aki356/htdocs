@@ -55,6 +55,7 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
         console.log(products);
         
         // const price_div = target.closest('.korz__order-price');
+        //функция удаления товара из корзины
         if (target.classList.contains('clear'))
         {
           let id = parseInt(clear.dataset.id);
@@ -68,27 +69,10 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
             document.getElementById("div__empty_korz").style.display = "block";
               document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
           }
-          // for(let key = 0; key < cart.size; key++){
-          //   console.log(total.textContent);
-          //   if(total.textContent == ""){
-              
-          //     document.querySelector(".order-btn__container").textContent = "";
-              // document.getElementById("div__empty_korz").style.display = "block";
-              // document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
-          //     console.log(document.getElementById('korz__order'+key+''));
-          //     continue;
-          //   }
-          //   else{
-          //     document.getElementById("div__empty_korz").style.display = "none";
-          //     document.getElementById("empty_korz").innerHTML = "";
-          //     document.querySelector(".order-btn__container").innerHTML = '<button class="order-btn" name="submit" type="submit">Оформить заказ</button>';
-          //     console.log(document.querySelector(".order-btn__container").innerHTML);
-          //     alert("есть");
-          //   }
-          // }
           alert("удалено");
         }
         
+        //функция уменьшения количества товара
         if (target.classList.contains('minus'))
         {
           const countEl = product.querySelector('.calc-num');
@@ -133,7 +117,7 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
             
         }
           cart = cart.set(id, JSON.stringify(Array.from(map.entries())));
-        }
+        }//функция увеличения количества товара
         else if (target.classList.contains('plus'))
         {
           const countEl = product.querySelector('.calc-num');
