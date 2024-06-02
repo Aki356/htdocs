@@ -9,7 +9,7 @@ if(!empty($_SESSION['login'])){
 <?php include 'auth_check.php'; ?>
     <main>
         <div class="auth">
-            <div class="auth__container">
+            <div class="auth__container container">
                 <div class="auth__title">
                     <div class="auth__title-image">
                         <img src="images/account.png" alt="">

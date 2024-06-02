@@ -51,5 +51,11 @@
     <script>
         $('.mask-phone').mask('+7 (999) 999-99-99');
     </script>
+    <script>
+    if(sessionStorage.getItem("message")){
+        alert(sessionStorage.getItem("message"));
+        sessionStorage.removeItem("message");
+    }
+</script>
 </body>
 </html>

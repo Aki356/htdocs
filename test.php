@@ -1,7 +1,7 @@
 <?php
 include ("connect.php");
 
-if(isset($_POST["submit"])){
+if(isset($_POST["form_order"])){
     if(!empty($_SESSION['login'])){
     $cart = array();
     for($key=0; $key<(int)$_POST["sizeForm"]; $key++){

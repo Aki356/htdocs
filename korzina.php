@@ -1,6 +1,6 @@
 <?php include 'template/head.php'; ?>
 <?php include 'template/nav.php'; ?>
-<?php include 'test.php'; ?>
+
 <?php
 include ("connect.php");
 if (!$connection1) {
@@ -21,7 +21,9 @@ if (!$connection1) {
                 <h2 id="title">Корзина</h2>
             </div>
             <div id="korz__orders" class="korz__orders">
-                <h3>Ваш заказ</h3>
+                <div class="title">
+                    <h3>Ваш заказ</h3>
+                </div>
                 <?php //include 'test.php'; ?>
                 
                 <div id="korz__order_container" class="korz__order_container"></div>
@@ -45,7 +47,7 @@ if (!$connection1) {
     //цикл для items
     // var i = 0;
     if(cart.length !== 0){
-        document.getElementById("korz__order_container").innerHTML += '<div class="order-btn__container"><form id="orderForm" method="post"></form></div>';
+        document.getElementById("korz__order_container").innerHTML += '<div class="order-btn__container"><form id="orderForm" method="post" action="form_order.php"></form></div>';
         for(let key = 0; key < cart.length; key++){
             
             
@@ -168,10 +170,7 @@ if (!$connection1) {
     //document.getElementById("korz__orders").innerHTML = a;
     document.getElementById("empty_korz").innerHTML = "В корзине пусто.";
     }
-    if(sessionStorage.getItem("message")){
-        alert(sessionStorage.getItem("message"));
-        sessionStorage.removeItem("message");
-    }
+    
     </script>
     
         <?php include 'template/footer.php'; ?>	

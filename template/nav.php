@@ -37,7 +37,7 @@ else{
         <div class="mob-menu__menu">
             <ul>
                 <li><a href="menu.php">Меню</a></li>
-                <li><a href="#">Контакты</a></li>
+                <li><a href="contacts.php">Контакты</a></li>
                 <li><a href="menu.php">Меню</a></li>
                 <li><a href="#">Отзывы</a></li>
                 <li><a href="#">О нас</a></li>
@@ -53,7 +53,7 @@ else{
             <div class="top__menu">
                 <ul>
                     <li><a href="menu.php">Меню</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="contacts.php">Контакты</a></li>
                     <?php 
                     if(!empty($_SESSION['login'])){
                         if($_SESSION['login'] == 'admin'){
