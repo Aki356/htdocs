@@ -35,6 +35,7 @@ if (!$connection1) {
         </div>
     </main>
     <script>
+        var sumAll = 0;
     console.log(JSON.parse(sessionStorage.getItem("cart")));
     // document.getElementById("korz__order_container").innerHTML = 'Ghbdd';
     if (sessionStorage.getItem("cart")) {
@@ -82,6 +83,7 @@ if (!$connection1) {
                         var price = JSON.parse(cart[key][1])[3][1];
                         var count = JSON.parse(cart[key][1])[6][1];
                         let sum = price * count;
+                        sumAll += sum;
                         console.log(sum);
                         document.getElementById("korz__order-price"+key).innerHTML += "<p class='price'><span>"+sum+"</span> ₽</p>";
                     // }
@@ -159,7 +161,7 @@ if (!$connection1) {
             document.getElementById("idForm"+key).hidden = true;
             document.getElementById("calc-num_input"+key).hidden = true;
         }
-        document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><button class="order-btn" name="submit" type="submit">Оформить заказ</button>';
+        document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><input class="sumAll" name="sumAll" type="hidden" value="'+sumAll+'"><button class="order-btn" name="submit" type="submit">Оформить заказ</button><h5 id="sumAll">Итого: '+sumAll+' ₽</h5>';
         
     }
         if(cart.length === 0){

@@ -76,7 +76,8 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
         if (target.classList.contains('minus'))
         {
           const countEl = product.querySelector('.calc-num');
-          
+          const sumForm = document.querySelector('.sumAll');
+          const sumAll = document.getElementById('sumAll');
           //document.getElementById("calc-num"+key).innerText
           let   count1   = parseInt(countEl.value);
           if (count1 > 1)
@@ -90,8 +91,12 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
           countForm.setAttribute('value', count1);
           
           
+          
           const total   = product.querySelector('.korz__order-price p span');
           total.textContent   = parseInt(product.dataset.price) * count1;
+          let sA = parseInt(sumForm.value) - parseInt(product.dataset.price);
+          sumForm.setAttribute('value', sA);
+          sumAll.textContent = "Итого: "+sA;
           let id = parseInt(product.dataset.id);
           var map = JSON.parse(cart.get(id));
           for (let pair of map) {
@@ -121,6 +126,8 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
         else if (target.classList.contains('plus'))
         {
           const countEl = product.querySelector('.calc-num');
+          const sumForm = document.querySelector('.sumAll');
+          const sumAll = document.getElementById('sumAll');
           let   count1   = parseInt(countEl.value);
           // if (count1 < 9)
           // {
@@ -132,6 +139,9 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
           countForm.setAttribute('value', count1);
           const total   = product.querySelector('.korz__order-price p span');
           total.textContent   = parseInt(product.dataset.price) * count1;
+          let sA = parseInt(sumForm.value) + parseInt(product.dataset.price);
+          sumForm.setAttribute('value', sA);
+          sumAll.textContent = "Итого: "+sA;
           let id = parseInt(product.dataset.id);
           var map = JSON.parse(cart.get(id));
           for (let pair of map) {

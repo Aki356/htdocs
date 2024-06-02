@@ -79,55 +79,14 @@ if(isset($_POST['exit'])){
                     </div>
                     <div class="orders-user__items">
                         <div class="orders-user__item">
-                            <div class="item__container">
+                            <div class="item__container-flex">
                                 <div class="item__img">
                                     <img src="images/true_orders.png" alt="Статус заказа">
                                 </div>
-                                <div class="item__num-order">
-                                    <h4>№ 01</h4>
-                                </div>
-                                <div class="item__date_time_status">
-                                    <p>Статус</p>
-                                    <p>01 января 2024 в 10:00</p>
-                                </div>
-                                <div class="item__price">
-                                    <h4>299 ₽</h4>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <?php 
-                                $sql = mysqli_query($connection1, "SELECT numId_order FROM orders WHERE id_user='{$_SESSION['id_user']}'");
-                                $numId = array();
-                                while ($result = mysqli_fetch_array($sql)) {
-                                    $numId[] = $result['numId_order'];
-                                    // echo "<h2>{$result['numId_order']}</h2>";
-                                }
-                                $res = array_unique($numId);
-                                foreach($res as $key => $item){
-                                    $sql1 = mysqli_query($connection1,"SELECT * FROM orders WHERE numId_order = '$res[$key]'");
-                                    $num_row = mysqli_num_rows($sql1);
-                                    while($results = mysqli_fetch_array($sql1)){
-                                        $img_order = "";
-                                        if($results["id_status"] == 1){
-                                            $img_order = "images/processing_orders.png";
-                                        }
-                                        else if($results["id_status"] == 2 || $results["id_status"] == 3){
-                                            $img_order = "images/accept_orders.png";
-                                        }
-                                        else if($results["id_status"] == 4 || $results["id_status"] == 5 || $results["id_status"] == 6){
-                                            $img_order = "images/true_orders.png";
-                                        }
-                                        else if($results["id_status"] == 7){
-                                            $img_order = "images/false_orders.png";
-                                        }
-                                        else{
-                                            $img_order = "images/error_orders.png";
-                                        }
-
-                                        echo '<div class="orders-user__item"><div class="item__container"><div class="item__img"><img src="'.$img_order.'" alt="Статус заказа"></div>
+                                <div class="item__container">
+                                    <div class="item__info">
                                         <div class="item__num-order">
-                                            <h4>№ '.$res[$key].'</h4>
+                                            <h4>№ 01</h4>
                                         </div>
                                         <div class="item__date_time_status">
                                             <p>Статус</p>
@@ -136,9 +95,119 @@ if(isset($_POST['exit'])){
                                         <div class="item__price">
                                             <h4>299 ₽</h4>
                                         </div>
-                                        
-                                    </div>{$results["numId_order"]}</div>';
+                                    </div>
+                                    <details class="item__more">
+                                        <summary>Подробнее</summary>
+                                        <ul>
+                                            <li class="item__more-li"><p class="item__more-p">Греческий салат с фетаксой</p> <p>1 x 299 ₽</p></li>
+                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
+                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
+                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
+                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
+                                        </ul>
+                                    </details>
+                                </div>
+                            </div>
+                        </div>
+                        <?php 
+                                $sql = mysqli_query($connection1, "SELECT * FROM orders INNER JOIN status ON orders.id_status=status.id_status WHERE id_user='{$_SESSION['id_user']}' GROUP BY id_order DESC");
+                                $numId = array();
+                                $status = array();
+                                $all = array();
+                                while ($result = mysqli_fetch_array($sql)) {
+                                    $numId[] = $result['numId_order'];
+                                    $status[] = array("id"=>$result['numId_order'], "id_status" => $result['id_status'], "name_status" => $result['name_status'],"total" => $result['totalPrise_order'], "date" => $result['date_order'], "time" => $result['time_order']);
+                                    
+                                    
+                                    // echo "<h2>{$result['numId_order']}</h2>";
+                                }
+                                $res = array_unique($numId);
+                                //echo count($res);
+                                //print_r($status);
+                                //echo"<br>";
+                                //print_r($res);
+                                print_r($all);
+                                foreach($res as $k_i => $item_i){
+                                    //echo $item_i;
+                                    
+                                    //echo $k_s;
+                                    $sql1 = mysqli_query($connection1,"SELECT * FROM `orders` INNER JOIN product ON orders.id_products=product.id_product INNER JOIN status ON orders.id_status=status.id_status WHERE numId_order = '$item_i'");
+                                    $num_row = mysqli_num_rows($sql1);
+                                    
+                                    $img_order = "";
+                                    foreach($status as $k_s => $item_s){
+                                        print_r($item_s["id"]);
+                                        if($item_i == $item_s["id"]){
+                                            
+                                            if($item_s["id_status"] == 1){
+                                                $img_order = "images/processing_orders.png";
+                                            }
+                                            else if($item_s["id_status"] == 2 || $item_s["id_status"] == 3){
+                                                $img_order = "images/accept_orders.png";
+                                            }
+                                            else if($item_s["id_status"] == 4 || $item_s["id_status"] == 5 || $item_s["id_status"] == 6){
+                                                $img_order = "images/true_orders.png";
+                                            }
+                                            else if($item_s["id_status"] == 7){
+                                                $img_order = "images/false_orders.png";
+                                            }
+                                            else{
+                                                $img_order = "images/error_orders.png";
+                                            }
+                                            
+                                            echo '<div class="orders-user__item">
+                                    <div class="item__container-flex">
+                                        <div class="item__img">
+                                        <img src="'.$img_order.'" alt="Статус заказа">
+                                        </div>
+                                        <div class="item__container">
+                                        <div class="item__info">
+                                        <div class="item__num-order">
+                                                    <h4>№ '.$item_i.'</h4>
+                                                    </div>
+                                                    <div class="item__date_time_status">';
+                                                    while($results = mysqli_fetch_array($sql1)){
+                                                    echo '<p>'.$results["name_status"].'</p>
+                                                    <p>'.$results["date_order"].' в '.$results["time_order"].'</p>
+                                                    </div>
+                                                <div class="item__price">
+                                                    <h4> ₽</h4>
+                                                    </div>
+                                                    </div>
+                                                    <details class="item__more">
+                                                    <summary>Подробнее</summary>
+                                                <ul>
+                                                <li class="item__more-li"><p class="item__more-p">'.$results["name_product"].'</p> <p>'.$results["count_order"].' x '.$results["price_product"].' ₽</p></li>
+                                                </ul>
+                                            </details>
+                                            </div>
+                                            </div>
+                                            </div>';}
+                                        }
+                                        else{
+                                            echo "нет";
+                                            $img_order = "images/error_orders.png";
+                                        }
                                     }
+
+                                    
+                                    // while($results = mysqli_fetch_array($sql1)){
+                                        
+
+                                    //     /*echo '<div class="orders-user__item"><div class="item__container"><div class="item__img"><img src="" alt="Статус заказа"></div>
+                                    //     <div class="item__num-order">
+                                    //         <h4>№ </h4>
+                                    //     </div>
+                                    //     <div class="item__date_time_status">
+                                    //         <p>Статус</p>
+                                    //         <p>01 января 2024 в 10:00</p>
+                                    //     </div>
+                                    //     <div class="item__price">
+                                    //         <h4>299 ₽</h4>
+                                    //     </div>
+                                        
+                                    // </div></div>';*/
+                                    // }
                                 }
                                 ?>
                     </div>

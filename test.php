@@ -42,11 +42,11 @@ if(isset($_POST["form_order"])){
             $price = $result['price_product'];
             $num_product = $item;
             $sum = $price*$num_product;
-            
+            $sumAll = $_POST["sumAll"];
             if($rowCount == 0){
-                if(!empty($num) && !empty($_SESSION['id_user']) && !empty($key) && !empty($item) && !empty($date) && !empty($time) && !empty($sum)){
+                if(!empty($num) && !empty($_SESSION['id_user']) && !empty($key) && !empty($item) && !empty($date) && !empty($time) && !empty($sum) && !empty($sumAll)){
                     echo $num.' '.$_SESSION['id_user'].' '.$key.' '.$item.' '.$date.' '.$time.' '.$sum;
-                    $order = mysqli_query($connection1, "INSERT INTO orders (numId_order, id_user, id_products, count_order, date_order, time_order, totalPrise_order) VALUES('{$num}', '{$_SESSION['id_user']}', '{$key}', '{$item}', '{$date}', '{$time}', '{$sum}')");
+                    $order = mysqli_query($connection1, "INSERT INTO orders (numId_order, id_user, id_products, count_order, date_order, time_order, totalPrise_order, sumAll_order) VALUES('{$num}', '{$_SESSION['id_user']}', '{$key}', '{$item}', '{$date}', '{$time}', '{$sum}', '{$sumAll}')");
                     if($order == "TRUE"){
                         $popular = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$key}'");
                         while($res = mysqli_fetch_array($popular)){
