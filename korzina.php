@@ -55,7 +55,7 @@ if (!$connection1) {
             //цикл для item
             // if(key == i){
                 // for(let key1 = 0; key1 < JSON.parse(cart[key][1]).length; key1++){
-                    document.getElementById("korz__order_container").innerHTML += "<div id='korz__order"+key+"' class='korz__order'></div>";
+                    document.getElementById("korz__order_container").innerHTML += "<div id='korz__order"+key+"' class='korz__order' data-keycart='"+key+"' data-price='"+JSON.parse(cart[key][1])[3][1]+"' data-id='"+JSON.parse(cart[key][1])[0][1]+"'></div>";
                     // document.getElementById("korz__order"+key).innerHTML = '';
                     // document.getElementById("korz__order-clear"+key).innerHTML = "<button type='submit'><img src='images/korz-clear.png' alt=''></button>";
                     document.getElementById("korz__order"+key).innerHTML += "<div id='korz__order-clear"+key+"' class='korz__order-clear' data-id='"+JSON.parse(cart[key][1])[0][1]+"'><button class='clear' type='submit'>X</button></div><div id='korz__container"+key+"' class='korz__container' data-keycart='"+key+"' data-price='"+JSON.parse(cart[key][1])[3][1]+"' data-id='"+JSON.parse(cart[key][1])[0][1]+"'></div>";
@@ -161,7 +161,7 @@ if (!$connection1) {
             document.getElementById("idForm"+key).hidden = true;
             document.getElementById("calc-num_input"+key).hidden = true;
         }
-        document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><input class="sumAll" name="sumAll" type="hidden" value="'+sumAll+'"><button class="order-btn" name="submit" type="submit">Оформить заказ</button><h5 id="sumAll">Итого: '+sumAll+' ₽</h5>';
+        document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><input class="sumAll" name="sumAll" type="hidden" value="'+sumAll+'"><button class="order-btn" name="submit" type="submit">Оформить заказ</button><h5 class="order-sumAll" id="sumAll">Итого: '+sumAll+' ₽</h5>';
         
     }
         if(cart.length === 0){

@@ -77,38 +77,7 @@ if(isset($_POST['exit'])){
                     <div class="orders-user title">
                         <h3>История заказов</h3>
                     </div>
-                    <div class="orders-user__items">
-                        <div class="orders-user__item">
-                            <div class="item__container-flex">
-                                <div class="item__img">
-                                    <img src="images/true_orders.png" alt="Статус заказа">
-                                </div>
-                                <div class="item__container">
-                                    <div class="item__info">
-                                        <div class="item__num-order">
-                                            <h4>№ 01</h4>
-                                        </div>
-                                        <div class="item__date_time_status">
-                                            <p>Статус</p>
-                                            <p>01 января 2024 в 10:00</p>
-                                        </div>
-                                        <div class="item__price">
-                                            <h4>299 ₽</h4>
-                                        </div>
-                                    </div>
-                                    <details class="item__more">
-                                        <summary>Подробнее</summary>
-                                        <ul>
-                                            <li class="item__more-li"><p class="item__more-p">Греческий салат с фетаксой</p> <p>1 x 299 ₽</p></li>
-                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
-                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
-                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
-                                            <li class="item__more-li"><p class="item__more-p">Греческий салат</p> <p>1 x 299 ₽</p></li>
-                                        </ul>
-                                    </details>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="orders-user__items" class="orders-user__items">
                         <?php 
                                 $sql = mysqli_query($connection1, "SELECT * FROM orders INNER JOIN status ON orders.id_status=status.id_status WHERE id_user='{$_SESSION['id_user']}' GROUP BY id_order DESC");
                                 $numId = array();
@@ -116,7 +85,7 @@ if(isset($_POST['exit'])){
                                 $all = array();
                                 while ($result = mysqli_fetch_array($sql)) {
                                     $numId[] = $result['numId_order'];
-                                    $status[] = array("id"=>$result['numId_order'], "id_status" => $result['id_status'], "name_status" => $result['name_status'],"total" => $result['totalPrise_order'], "date" => $result['date_order'], "time" => $result['time_order']);
+                                    $status[] = array("id"=>$result['numId_order'], "id_status" => $result['id_status'], "name_status" => $result['name_status'],"sumAll" => $result['sumAll_order'], "date" => $result['date_order'], "time" => $result['time_order']);
                                     
                                     
                                     // echo "<h2>{$result['numId_order']}</h2>";
@@ -126,7 +95,7 @@ if(isset($_POST['exit'])){
                                 //print_r($status);
                                 //echo"<br>";
                                 //print_r($res);
-                                print_r($all);
+                                //print_r($all);
                                 foreach($res as $k_i => $item_i){
                                     //echo $item_i;
                                     
@@ -136,8 +105,8 @@ if(isset($_POST['exit'])){
                                     
                                     $img_order = "";
                                     foreach($status as $k_s => $item_s){
-                                        print_r($item_s["id"]);
-                                        if($item_i == $item_s["id"]){
+                                        //print_r($item_s["id"]);
+                                        if($item_s["id"] == $item_i){
                                             
                                             if($item_s["id_status"] == 1){
                                                 $img_order = "images/processing_orders.png";
@@ -165,27 +134,26 @@ if(isset($_POST['exit'])){
                                         <div class="item__num-order">
                                                     <h4>№ '.$item_i.'</h4>
                                                     </div>
-                                                    <div class="item__date_time_status">';
-                                                    while($results = mysqli_fetch_array($sql1)){
-                                                    echo '<p>'.$results["name_status"].'</p>
-                                                    <p>'.$results["date_order"].' в '.$results["time_order"].'</p>
+                                                    <div class="item__date_time_status"><p>'.$item_s["name_status"].'</p>
+                                                    <p>'.$item_s["date"].' в '.$item_s["time"].'</p>
                                                     </div>
                                                 <div class="item__price">
-                                                    <h4> ₽</h4>
+                                                    <h4>'.$item_s["sumAll"].' ₽</h4>
                                                     </div>
                                                     </div>
                                                     <details class="item__more">
                                                     <summary>Подробнее</summary>
-                                                <ul>
-                                                <li class="item__more-li"><p class="item__more-p">'.$results["name_product"].'</p> <p>'.$results["count_order"].' x '.$results["price_product"].' ₽</p></li>
-                                                </ul>
+                                                <ul>';
+                                                while($results = mysqli_fetch_array($sql1)){
+                                                echo '<li class="item__more-li"><p class="item__more-p">'.$results["name_product"].'</p> <p>'.$results["count_order"].' x '.$results["price_product"].' ₽</p></li>';}
+                                                echo '</ul>
                                             </details>
                                             </div>
                                             </div>
-                                            </div>';}
+                                            </div>';
+                                            break;
                                         }
                                         else{
-                                            echo "нет";
                                             $img_order = "images/error_orders.png";
                                         }
                                     }
@@ -210,11 +178,49 @@ if(isset($_POST['exit'])){
                                     // }
                                 }
                                 ?>
+                                <div id="orders__gradient" class="orders__gradient"></div>
+                            <a class="orders__link-show_more" id="button">Показать больше</a>
                     </div>
                 </div>
             </div>
         </div>
         
     </main>
+    <script>
+        window.onload = function () {
+        var box=document.getElementsByClassName('orders-user__item');
+        var btn=document.getElementById('button');
+        var div=document.getElementById('orders__gradient');
+        if(box.length > 0){
+            for (let i=3;i<box.length;i++) {
+                box[i].style.display = "none";
+            }
+            var countD = 3;
+            btn.addEventListener("click", function() {
+                var box=document.getElementsByClassName('orders-user__item');
+                
+                if (countD < box.length){
+                    for(let i=0;i<countD;i++){
+                        box[i].style.display = "block";
+                    }
+                }
+                else{
+                    for(let i=0;i<countD;i++){
+                        box[i].style.display = "block";
+                    }
+                    btn.style.display = "none";
+                    div.style.display = "none";
+                }
+                countD += 3;
+
+            })
+        }
+        else{
+            btn.style.display = "none";
+            div.style.display = "none";
+            document.getElementById("orders-user__items").innerHTML += "<div class='orders-user__empty'>Вы ещё не совершили ни одного заказа.</div>";
+        }
+    }
+    </script>
     <?php include 'auth_check.php'; ?>
 <?php include 'template/footer.php'; ?>	

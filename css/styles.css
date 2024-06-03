@@ -211,8 +211,8 @@ body{
     margin-top: 45px;
 }
 .item-info{
-    /*height: 160px;*/
-    /*margin-top: 15px;*/
+    height: 160px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -687,6 +687,7 @@ header{
     right: -30px;
 }
 
+
 .events{
     padding-top: 140px;
 }
@@ -750,6 +751,15 @@ header{
     border: 3px solid #AF955C;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+.index-contacts__title h2{
+    color: #000;
+    font-family: Tahoma;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 
 footer{
     background-color: #1C1B17;
@@ -887,7 +897,6 @@ footer{
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin: 15px;
 }
 
 .item .price-weight{
@@ -910,12 +919,13 @@ footer{
 .auth{
     margin: 0 auto;
     padding-top: 70px;
-    padding-bottom: 100px;
+    /* padding-bottom: 100px; */
 }
 .auth__container{
     background-color: #F6EFEA;
     border-radius: 30px;
     margin-top: 50px;
+    margin-bottom: 50px;
     box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.15);
 }
 .auth__title{
@@ -977,7 +987,7 @@ footer{
     background: rgba(250, 247, 244, 0.50); */
 }
 .auth__form button{
-    width: 25%;
+    width: 50%;
     /*margin: 0 auto;*/
     border: none;
     border-radius: 20px;
@@ -1119,6 +1129,12 @@ footer{
     margin-left: 120px;
     font-size: 36px;
 }
+.orders-user__empty{
+    text-align: center;
+    font-size: 30px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
 .orders-user__item{
     margin-top: 50px;
 }
@@ -1130,7 +1146,7 @@ footer{
     background-color: #F6EFEA;
     border-radius: 30px;
     box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.15);
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     padding-top: 52px;
     padding-bottom: 52px;
 }
@@ -1157,6 +1173,8 @@ footer{
 }
 .item__more{
     /*margin-left: 200px;*/
+    position: relative;
+    z-index: 1;
 }
 .item__more[open] {
     animation-name: fadeInDown;
@@ -1173,6 +1191,38 @@ footer{
 } 
 .item__more-p{
     margin-right: 65px;
+}
+.orders__gradient{
+    height: 100px;
+    position: relative;
+    left: 0;
+    bottom: 160px;
+    background: linear-gradient(to top, #FAF7F4, transparent);
+}
+.orders__link-show_more{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 0;
+    bottom: 160px;
+    cursor: pointer;
+
+    font-family: Tahoma;
+    font-size: 24px;
+    /* text-decoration: none; */
+    color: #AF955C;
+}
+.orders__link-show_more:hover{
+    color: #8C7645;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.orders__link-show_more-img{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 0;
+    bottom: 160px;
 }
 
 
@@ -1376,6 +1426,12 @@ footer{
     background-color: #8C7645;
     -webkit-transition: all 0.5s ease;
           transition: all 0.5s ease;
+}
+.order-sumAll{
+    width: 150px;
+    text-align: center;
+
+    font-family: Tahoma;
 }
 
 

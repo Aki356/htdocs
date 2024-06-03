@@ -50,7 +50,7 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
         cart = new Map(JSON.parse(sessionStorage.getItem("cart")));
         console.log("Массив перенесен в переменную");
         const product = target.closest('.korz__container');
-        // const form = target.closest('.korz__container');
+         const form = target.closest('.korz__order');
         const clear = target.closest('.korz__order-clear');
         console.log(products);
         
@@ -58,12 +58,24 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
         //функция удаления товара из корзины
         if (target.classList.contains('clear'))
         {
-          let id = parseInt(clear.dataset.id);
           
+          const countEl = form.querySelector('.calc-num');
+          console.log(parseInt(countEl.value));
+          let id = parseInt(clear.dataset.id);
+          const sumForm = document.querySelector('.sumAll');
+          const sumAll = document.getElementById('sumAll');
+          let   count1   = parseInt(countEl.value);
+          const price   = parseInt(form.dataset.price) * count1;
+          
+          let sA = parseInt(sumForm.value) - parseInt(price);
+          console.log(sumForm.value);
+          sumForm.setAttribute('value', sA);
+          sumAll.textContent = "Итого: "+sA+" ₽";
           cart.delete(id);
           const total   = target.closest('.korz__order');
           const order_btn = document.querySelector(".order-btn__container");
           total.remove();
+          console.log(price.innerHTML);
           if(cart.size === 0){
             order_btn.remove();
             document.getElementById("div__empty_korz").style.display = "block";
@@ -80,9 +92,11 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
           const sumAll = document.getElementById('sumAll');
           //document.getElementById("calc-num"+key).innerText
           let   count1   = parseInt(countEl.value);
+          let sA = parseInt(sumForm.value);
           if (count1 > 1)
           {
             --count1;
+            sA = parseInt(sumForm.value) - parseInt(product.dataset.price);
           }
           countEl.value = count1;
           countEl.setAttribute('value', count1);
@@ -94,9 +108,9 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
           
           const total   = product.querySelector('.korz__order-price p span');
           total.textContent   = parseInt(product.dataset.price) * count1;
-          let sA = parseInt(sumForm.value) - parseInt(product.dataset.price);
+          
           sumForm.setAttribute('value', sA);
-          sumAll.textContent = "Итого: "+sA;
+          sumAll.textContent = "Итого: "+sA+" ₽";
           let id = parseInt(product.dataset.id);
           var map = JSON.parse(cart.get(id));
           for (let pair of map) {
@@ -141,7 +155,7 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
           total.textContent   = parseInt(product.dataset.price) * count1;
           let sA = parseInt(sumForm.value) + parseInt(product.dataset.price);
           sumForm.setAttribute('value', sA);
-          sumAll.textContent = "Итого: "+sA;
+          sumAll.textContent = "Итого: "+sA+" ₽";
           let id = parseInt(product.dataset.id);
           var map = JSON.parse(cart.get(id));
           for (let pair of map) {
