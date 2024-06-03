@@ -1508,3 +1508,72 @@ footer{
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
+
+
+.table_top{
+    background-color: #e2d4a6;
+    display: flex;
+    align-items: center;
+}
+.table_top p{
+    text-align: center;
+}
+
+.set-order{
+    margin-bottom: 120px;
+}
+.set-order__table{
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 70px;
+}
+.set-order__items{
+    margin-bottom: 40px;
+}
+.set-order__items-title h3{
+    text-align: left;
+    margin-bottom: 5px;
+    margin-left: 0;
+}
+.set-order__item{
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.set-order__item_title{
+    width: 67%;
+    padding: 0 10px;
+}
+.set-order__item_weight{
+    padding: 0 10px;
+}
+.set-order__item_count-price{
+    padding: 0 10px;
+}
+.set-order__items-title-price h3{
+    text-align: right;
+    margin-top: 5px;
+    margin-left: 0;
+}
+.set-order__btn{
+    margin-bottom: 0;
+}
+.order-info__inputs{
+    display: flex;
+    width: 520px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 35px;
+}
+.order-info__inputs p{
+    width: 100%;
+    display: flex;
+}
+.order-info__inputs>p>input{
+    width: 5%;
+    margin-bottom: 0;
+    margin-right: 5px;
+}

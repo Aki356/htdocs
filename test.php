@@ -7,7 +7,6 @@ if(isset($_POST["form_order"])){
     for($key=0; $key<(int)$_POST["sizeForm"]; $key++){
         $cart[(int)$_POST["idForm".$key]] = (int)$_POST["num_product".$key];
     }
-    var_dump($cart);
     $month_list = array(
         1  => 'января',
         2  => 'февраля',
@@ -44,9 +43,8 @@ if(isset($_POST["form_order"])){
             $sum = $price*$num_product;
             $sumAll = $_POST["sumAll"];
             if($rowCount == 0){
-                if(!empty($num) && !empty($_SESSION['id_user']) && !empty($key) && !empty($item) && !empty($date) && !empty($time) && !empty($sum) && !empty($sumAll)){
-                    echo $num.' '.$_SESSION['id_user'].' '.$key.' '.$item.' '.$date.' '.$time.' '.$sum;
-                    $order = mysqli_query($connection1, "INSERT INTO orders (numId_order, id_user, id_products, count_order, date_order, time_order, totalPrise_order, sumAll_order) VALUES('{$num}', '{$_SESSION['id_user']}', '{$key}', '{$item}', '{$date}', '{$time}', '{$sum}', '{$sumAll}')");
+                if(!empty($num) && !empty($_SESSION['id_user']) && !empty($key) && !empty($item) && !empty($date) && !empty($time) && !empty($sum) && !empty($sumAll) && !empty($_POST['phone']) && !empty($_POST['email']) && !empty($_POST['payment'])){
+                    $order = mysqli_query($connection1, "INSERT INTO orders (numId_order, id_user, phoneUser_order, emailUser_order, id_products, count_order, date_order, time_order, totalPrise_order, sumAll_order, payment_order) VALUES('{$num}', '{$_SESSION['id_user']}', '{$_POST['phone']}', '{$_POST['email']}', '{$key}', '{$item}', '{$date}', '{$time}', '{$sum}', '{$sumAll}', '{$_POST['payment']}')");
                     if($order == "TRUE"){
                         $popular = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$key}'");
                         while($res = mysqli_fetch_array($popular)){
@@ -59,9 +57,11 @@ if(isset($_POST["form_order"])){
                         // $_SESSION["messege"] = "Заказ успешно оформлен!";
                         ?>
                         <script>
-                            sessionStorage.setItem("message", "Успешно оформлен");sessionStorage.removeItem("cart");</script>
+                            //sessionStorage.setItem("message", "Успешно оформлен");
+                            document.getElementById("set-order__table").innerHTML = "<h3>Заказ успешно оформлен!</h3>";
+                            sessionStorage.removeItem("cart");
+                            </script>
                         <?php
-                        
                     }
                     else{
                         ?>
