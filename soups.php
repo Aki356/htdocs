@@ -2,7 +2,7 @@
 <?php include 'template/nav.php'; ?>
 
     <main>
-        <div class="menu-container">
+        <div class="menu-container container">
             <div class="title">
                 <?php
                 include ("connect.php");
