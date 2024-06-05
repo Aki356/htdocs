@@ -134,7 +134,7 @@
                 
                 // console.log(cart.get(2));
                 cart = cart.set(<?php echo $result['id_product'];?>, JSON.stringify(Array.from(map.entries())));
-                alert("Такой товар в корзине есть!");
+                alert("Товар добавлен в корзину!");
                 sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
             }
             if(!cart.has(<?php echo $result['id_product'];?>)){
@@ -157,7 +157,7 @@
                 cart = cart.set(<?php echo $result['id_product'];?>, JSON.stringify(Array.from(map.entries())));
                 // ++key_cart;
                 sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
-                alert("Товар добавлен в корзину! 1");
+                alert("Товар добавлен в корзину!");
             }
         }
         else{
@@ -181,7 +181,7 @@
                 cart = cart.set(<?php echo $result['id_product'];?>, JSON.stringify(Array.from(map.entries())));
                 // ++key_cart;
                 sessionStorage.setItem("cart", JSON.stringify(Array.from(cart.entries())));
-                alert("Товар добавлен в корзину! 0");
+                alert("Товар добавлен в корзину!");
             }
         }
     }

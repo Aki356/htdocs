@@ -66,22 +66,22 @@ if (!$connection1) {
                             //       }
                             //       redirect($url1);
                         
-                                echo '<div class="alert alert-secondary" role="alert">
-                                Проверьте введенные данные</div>';
+                                echo '<script>
+                                alert("Проверьте введенные данные");</script>';
                             //header( "refresh:3;url=auth.php" );
                             }
                         }
                         else {
                             if(empty($login) || empty($password)){
                                 
-                                echo '<div class="alert alert-secondary" role="alert">Проверьте введенные данные</br>';
-                                echo "Или <a href='reg.php'>Зарегистрироваться</a></div>";
+                                echo '<script>
+                                alert("Проверьте введенные данные");</script>';
                             }
                         }
                 }
                 else{
-                    echo '<div class="alert alert-secondary" role="alert">
-                    Не верный пароль!</div>';
+                    echo '<script>
+                                alert("Не верный пароль!");</script>';
                 }
             }
         }

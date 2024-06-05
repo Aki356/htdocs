@@ -1,11 +1,6 @@
 <?php include 'template/head.php'; ?>
 <?php include 'template/nav.php'; ?>
-<?php
-if(!empty($_SESSION['login'])){
-    header( header: 'Location: /');
-    die();
-}
-?>
+
 <?php include 'auth_check.php'; ?>
     <main>
         <div class="auth">
@@ -29,4 +24,4 @@ if(!empty($_SESSION['login'])){
             </div>
         </div>
     </main>
-<?php include 'template/footer.php'; ?>	
+<?php include 'template/footer.php'; ?>

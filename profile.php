@@ -1,27 +1,32 @@
-<?php include 'connect.php';?>
 <?php include 'template/head.php'; ?>
 <?php include 'template/nav.php'; ?>
+<?php include 'connect.php';?>
+<?php include 'edit_check.php'; ?>	
 <?php
-if(empty($_SESSION['login'])){
-    header( header: 'Location: /');
-    die();
-}
-$photo_user = '';
-// if(!empty($_SESSION['photo'])){
-//     if(is_null($_SESSION['photo'])){
-//         $photo_user = "images/account.png";
-//     }
-//     else{
-//         $photo_user = $_SESSION['photo'];
-//     }
-    
+// if(empty($_SESSION['login'])){
+//     header( header: 'Location: /');
+//     die();
 // }
+
+$photo_user = '';
 if(!empty($_SESSION['photo'])){
-    $photo_user = $_SESSION['photo'];
+    if(is_null($_SESSION['photo'])){
+        $photo_user = "images/account.png";
+    }
+    else{
+        $photo_user = $_SESSION['photo'];
+    }
+    
 }
 else{
     $photo_user = "images/account.png";
 }
+// if(!empty($_SESSION['photo'])){
+//     $photo_user = $_SESSION['photo'];
+// }
+// else{
+//     $photo_user = "images/account.png";
+// }
 $log = $_SESSION['login'];
 if(!empty($_SESSION['name'])){
     $name = $_SESSION['name'];
@@ -64,7 +69,7 @@ if(isset($_POST['exit'])){
                             <h4><?= $phone?></h4>
                         </div>
                         <div class="profile__btn">
-                            <form action="" method="post">
+                            <form action="edit.php" method="post">
                                 <button class="profile__btn-edit" name="edit" type="submit">Редактировать</button>
                             </form>
                             <form action="" method="post">
@@ -79,11 +84,15 @@ if(isset($_POST['exit'])){
                     </div>
                     <div id="orders-user__items" class="orders-user__items">
                         <?php 
-                                $sql = mysqli_query($connection1, "SELECT * FROM orders INNER JOIN status ON orders.id_status=status.id_status WHERE id_user='{$_SESSION['id_user']}' GROUP BY id_order DESC");
+                                $sql = mysqli_query($connection1, "SELECT * FROM orders INNER JOIN status ON orders.id_status=status.id_status WHERE id_user='".$_SESSION['id_user']."' ORDER BY id_order DESC");
                                 $numId = array();
                                 $status = array();
                                 $all = array();
-                                while ($result = mysqli_fetch_array($sql)) {
+                                //var_dump($sql);
+                                if($sql){
+                                //     $num_rows = mysqli_num_rows($sql);
+                                // if($num_rows > 0){
+                                    while ($result = mysqli_fetch_array($sql)) {
                                     $numId[] = $result['numId_order'];
                                     $status[] = array("id"=>$result['numId_order'], "id_status" => $result['id_status'], "name_status" => $result['name_status'],"sumAll" => $result['sumAll_order'], "date" => $result['date_order'], "time" => $result['time_order']);
                                     
@@ -177,6 +186,9 @@ if(isset($_POST['exit'])){
                                     // </div></div>';*/
                                     // }
                                 }
+                                // }
+                                }
+                                
                                 ?>
                                 <div id="orders__gradient" class="orders__gradient"></div>
                             <a class="orders__link-show_more" id="button">Показать больше</a>
@@ -223,4 +235,4 @@ if(isset($_POST['exit'])){
     }
     </script>
     <?php include 'auth_check.php'; ?>
-<?php include 'template/footer.php'; ?>	
+<?php include 'template/footer.php'; ?>

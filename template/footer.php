@@ -12,8 +12,8 @@
             </div>
             <div class="footer__menu">
                 <ul>
-                    <li><a href="#">Меню</a></li>
-                    <li><a href="#">Контакты</a></li>
+                    <li><a href="menu.php">Меню</a></li>
+                    <li><a href="contacts.php">Контакты</a></li>
                 </ul>
             </div>
             <p>Все права защищены</p>
