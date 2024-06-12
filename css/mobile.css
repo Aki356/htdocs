@@ -5,20 +5,103 @@
     }
 }
 
+@media only screen and (max-width: 1402px){
+    .korz__order-clear{
+        left: 1226px;
+    }
+}
+@media only screen and (max-width: 1400px){
+    .item{
+        margin-right: 45px;
+        margin-left: 45px;
+    }
+    .item .item-photo img{
+        height: 259px;
+    }
+    .korz__order-clear{
+        left: 1066px;
+    }
+}
+
+@media only screen and (max-width: 1201px){
+    .top__menu {
+        width: 375px;
+    }
+    .popular__item > .item-photo img{
+        height: 252px;
+    }
+    .popular__item > .item-info > .item-name h3{
+        font-size: 22px;
+    }
+    .events__item img{
+        height: 280px;
+    }
+    .main-hall__item img{
+        height: 272px;
+    }
+    .menu__item-info h3{
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    .item{
+        margin-right: 35px;
+        margin-left: 35px;
+    }
+    .item-info{
+        height: 145px;
+    }
+    .item .item-info h3{
+        font-size: 22px;
+    }
+    .item .price-weight h4{
+        font-size: 20px;
+    }
+    .item .price-weight p{
+        font-size: 18px;
+    }
+    .item .item-photo img{
+        height: 214px;
+    }
+    .add-korz-btn{
+        height: 45px;
+        font-size: 28px;
+    }
+    .order-btn__container{
+        left: 1030px;
+    }
+    .order-btn{
+        font-size: 20px;
+    }
+    .order-sumAll{
+        font-size: 20px;
+    }
+    .korz__order-clear {
+        left: 886px;
+    }
+}
+
+@media only screen and (max-width: 1150px){
+    .korz__order-title p{
+        font-size: 23px;
+    }
+    .korz__order-weight{
+        font-size: 18px;
+    }
+    .korz__order-price{
+        font-size: 23px;
+    }
+}
 
 @media only screen and (max-width: 1024px){
     .container {
         width: 98%;
     }
-    header{
+    /* header{
         height: 90px;
-    }
-    .top__logo img{
-        width: 80%;
-    }
+    } */
+    
     .top__menu {
         width: 38%;
-        padding-top: 33px;
     }
     .top__menu ul li a {
         font-size: 20px;
@@ -26,23 +109,8 @@
     .top__number {
         width: 170px;
     }
-    .top__pict {
-        padding-top: 33px;
-    }
-    .top__pict img{
-        width: 80%;
-    }
-    .top__text {
-        padding-top: 33px;
-    }
     .top__text p a{
         font-size: 20px;
-    }
-    .top__korz-account{
-        padding-top: 17px;
-    }
-    .top__korz-account a img{
-        width: 80%;
     }
     .slyder__info h1 {
         font-size: 30px;
@@ -61,14 +129,56 @@
     }
 }
 
+@media only screen and (max-width: 992px){
+    .title h2{
+        font-size: 40px;
+    }
+    .item{
+        margin-right: 25px;
+        margin-left: 25px;
+    }
+    .item-info{
+        height: 128px;
+    }
+    .item .item-info h3{
+        font-size: 20px;
+    }
+    .item .price-weight h4{
+        font-size: 17px;
+    }
+    .item .price-weight p{
+        font-size: 16px;
+    }
+    .item .item-photo img{
+        height: 154px;
+    }
+    .add-korz-btn{
+        height: 36px;
+        font-size: 22px;
+    }
+    .korz__order-container{
+        flex-direction: column;
+        align-items: center;
+        height: 170px;
+    }
+    .korz__order-clear {
+        left: 646px;
+    }
+    .korz__order-title {
+        width: auto;
+    }
+    .korz__order-price {
+        padding-right: 0px;
+    }
+    .menu__item{
+        width: 36%;
+    }
+}
 
 @media only screen and (max-width: 768px){
     .slyder__info {
         width: 85%;
         margin: 0 auto 25px auto;
-    }
-    .top{
-        justify-content: left;
     }
     .top__menu{
         display: none;
@@ -79,9 +189,15 @@
     .top__text{
         padding-right: 30px;
     }
+    .slyder__photos{
+        width: 400px;
+        margin: 0 auto;
+    }
     .slyder__photo {
-        width: 85%;
-        margin: 0 auto 25px auto;
+        width: 100%;
+    }
+    .slyder__photo img{
+        height: 218px;
     }
     .popular__item-info h3 {
         font-size: 26px;
@@ -90,8 +206,21 @@
         width: 64px;
         font-size: 34px;
     }
+    .contacts__items{
+        flex-direction: column-reverse;
+    }
+    .contacts__info{
+        margin-bottom: 15px;
+        margin-left: 0;
+    }
+    .contacts__map>iframe{
+        width: 516px;
+    }
     .mob-btn{
         display: block;/*отменяю дисплей none*/
+    }
+    .korz__order-clear {
+        left: 466px;
     }
 
 }

@@ -26,25 +26,6 @@ else{
 //$panel_a = '';
 
 ?>
-<div class="mob-btn">
-        <img src="images/mob-btn.png" alt="">
-    </div>
-    <div class="mob-menu">
-        <div class="mob-menu__logo">
-            <img src="images/logo.png" alt="">
-        </div>
-        <div class="mob-menu__top"></div>
-        <div class="mob-menu__menu">
-            <ul>
-                <li><a href="menu.php">Меню</a></li>
-                <li><a href="contacts.php">Контакты</a></li>
-                <li><a href="menu.php">Меню</a></li>
-                <li><a href="#">Отзывы</a></li>
-                <li><a href="#">О нас</a></li>
-                <li><a href="#">Контакты</a></li>
-            </ul>
-        </div>
-    </div>
     <header>
         <div class="top container">
             <div class="top__logo">
@@ -76,6 +57,29 @@ else{
                 <a class="korz-img" href="korzina.php"><img src="images/korz.png" alt=""></a>                
                 <a class="account-img" href="<?= $account?>"><img src="<?= $photo_user?>" alt=""></a>
                 <!-- <a href="auth.php"><img src="images/account.png" alt=""></a> -->
+            </div>
+            <div class="mob-btn">
+                <img src="images/mob-btn.png" alt="">
+            </div>
+            <div class="mob-menu">
+                <div class="mob-menu__logo">
+                        <img src="images/logo.png" alt="">
+                    </div>
+                <div class="mob-menu__top"></div>
+                <div class="mob-menu__menu">
+                    <ul>
+                        <li><a href="menu.php">Меню</a></li>
+                        <li><a href="contacts.php">Контакты</a></li>
+                        <?php 
+                        if(!empty($_SESSION['login'])){
+                            if($_SESSION['login'] == 'admin'){
+                                echo $panel_a;
+                                echo $all_orders;
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
             </div>
         </div>
         <?php

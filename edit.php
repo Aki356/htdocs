@@ -39,4 +39,8 @@ if(isset($_POST['edit'])){
     
     <?php
 }
+else{
+    header( 'Refresh:0; url=/' );
+            die();
+}
 ?>

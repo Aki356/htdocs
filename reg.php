@@ -12,7 +12,7 @@
                 <div class="auth__form">
                     <form method="post" enctype="multipart/form-data">
                         <input type="text" name="log" placeholder="Логин"><br>
-                        <input type="text" name="pass" placeholder="Пароль"><br>
+                        <input type="password" name="pass" placeholder="Пароль"><br>
                         <input type="text" name="fio" placeholder="Имя пользователя"><br>
                         <!-- <input type="tel" pattern="[+]{1}[0-9]{11,14}" name="phone" placeholder="Телефон"><br> -->
                         <input type="text" name="phone" class="mask-phone" placeholder="Номер телефона">
@@ -28,4 +28,4 @@
     </main>
     <div class="answear"><?php include 'reg_check.php'; ?></div>
     
-<?php include 'template/footer.php'; ?>	
+<?php include 'template/footer.php'; ?>

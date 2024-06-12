@@ -199,7 +199,7 @@ body{
 .items{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 }
 .item{
     width: 25%;
@@ -218,7 +218,7 @@ body{
     justify-content: space-between;
 }
 .item-name{
-    margin: 15px auto;
+    margin: auto 0;
 }
 
 .add-korz .calc-count{
@@ -261,12 +261,12 @@ body{
     flex-wrap: wrap;
 }
 .mob-btn {
-    width: 70px;
+    width: 45px;
   
-    position: absolute;
+    /* position: absolute;
     z-index: 700;
     top: 8px;
-    right: 24px;
+    right: 24px; */
     display: none;
     cursor: pointer;
 }
@@ -274,14 +274,15 @@ body{
     width: 100%;
 }
 .mob-menu{
-    background-color: #1C1B17;
+    background-color: #F6EFEA;
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
     width: 300px;
     visibility: visible;
     /* display: block; */
     position: absolute;
     z-index: 700;
     right: -300px;
-    top: 90px;
+    top: 70px;
     transition: all 1s ease;
     display: none;
 }
@@ -295,6 +296,9 @@ body{
     justify-content: center;
     padding-top: 20px;
     padding-bottom: 10px;
+}
+.mob-menu__logo img{
+    width: 100%;
 }
 .mob-menu__top{
     border: #8C7645 3px solid;
@@ -310,7 +314,7 @@ body{
     padding-bottom: 5px;
     padding-top: 2px;
 }
-.mob-menu__menu ul li a{
+/* .mob-menu__menu ul li a{
     text-decoration: none;
     color:#AF955C;
     font-size: 20px;
@@ -328,10 +332,48 @@ body{
     bottom: -3px;
     width: 0;
     height: 2px; /* Высота линии */
+    /*background-color: #1C1B17;*/ /* Цвет подчеркивания при исчезании линии*/
+    /*transition: width 0.5s;*/ /* Время эффекта */
+/* }
+.mob-menu__menu ul li a:hover:after {
+	content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px; /* Высота линии */
+    /*background-color: #8C7645;*/ /* Цвет подчеркивания при появлении линии*/
+    /*transition: width 0.5s;*/  /* Время эффекта */
+/*} */
+.mob-menu__menu a{
+    color: #1C1B17;
+    font-family: Tahoma;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+.mob-menu__menu a:hover{
+    color: #8C7645;
+    -webkit-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+.mob-menu__menu a:after {
+	content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px; /* Высота линии */
     background-color: #1C1B17; /* Цвет подчеркивания при исчезании линии*/
     transition: width 0.5s; /* Время эффекта */
 }
-.mob-menu__menu ul li a:hover:after {
+.mob-menu__menu a:hover:after {
 	content: "";
     width: 100%;
     display: block;
@@ -566,6 +608,8 @@ header{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 160px;
+    margin-top: 15px;
 }
 .popular__item > .item-info > .item-name h3{
     
@@ -574,6 +618,7 @@ header{
     font-size: 26px;
     text-align: center;
     line-height: 1;
+    margin: auto 0;
 }
 .popular__item .price-weight{
     display: flex;
@@ -897,6 +942,7 @@ footer{
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin: auto 0;
 }
 
 .item .price-weight{
@@ -1256,9 +1302,9 @@ footer{
     padding-bottom: 80px;
 }
 .korz{
-    width: 1100px;
     margin: 0 auto;
     padding-top: 120px;
+    padding-bottom: 120px;
 }
 .korz__title{
     width: 260px;
@@ -1308,13 +1354,23 @@ footer{
     align-items: center;
     justify-content: center;
 }
-.order-btn__container{
+/* .order-btn__container{
     display: flex;
     justify-content: center;
     position: fixed;
     z-index: 500;
     bottom: 265px;
     left: 1330px;
+} */
+.order-btn__container>form{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.korz__order-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }
 .korz__order-clear{
     width: 25px;
@@ -1322,7 +1378,7 @@ footer{
     position:  relative;
     z-index: 500;
     top: 25px;
-    left: 1050px;
+    left: 1226px;
 }
 .korz__order-clear img{
     position: relative;
@@ -1362,7 +1418,6 @@ footer{
     /*padding-right: 4%;*/
 }
 .calc{
-    width: 13%;
     display: flex;
     justify-content: space-around;
     border: #AF955C 2px solid;
@@ -1406,14 +1461,12 @@ footer{
     justify-content: center;
 }
 .order-btn{
-    width: 75%;
     padding: 18px;
     border: none;
     border-radius: 25px;
     background: #AF955C;
     position: relative;
     cursor: pointer;
-    margin-bottom: 28px;
     color: #FAF7F4;
     text-align: center;
     font-family: Tahoma;

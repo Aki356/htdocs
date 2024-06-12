@@ -3,10 +3,10 @@
 <?php include 'connect.php';?>
 <?php include 'edit_check.php'; ?>	
 <?php
-// if(empty($_SESSION['login'])){
-//     header( header: 'Location: /');
-//     die();
-// }
+if(empty($_SESSION['login'])){
+    header( 'Refresh:0; url=/' );
+    die();
+}
 
 $photo_user = '';
 if(!empty($_SESSION['photo'])){

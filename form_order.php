@@ -67,7 +67,7 @@ if (isset($_SESSION['message'])){
                     }
                     echo '<input name="sizeForm" type="hidden" value="'.$_POST["sizeForm"].'"><input class="sumAll" name="sumAll" type="hidden" value="'.$_POST["sumAll"].'">';
                     ?>
-                    <input required type="text" name="phone" placeholder="Номер телефона"><br>
+                    <input type="text" name="phone" class="mask-phone" placeholder="Номер телефона"><br>
                     <input required type="email" name="email" placeholder="Почта"><br>
                     <div required class="order-info__inputs">
                         <p><input type="radio" name="payment" value="Наличный" checked> Наличный расчёт</p>
@@ -81,4 +81,4 @@ if (isset($_SESSION['message'])){
 </main>
 
 <?php include 'test.php'; ?>
-<?php include 'template/footer.php'; ?>	
+<?php include 'template/footer.php'; ?>

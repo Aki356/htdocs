@@ -35,10 +35,15 @@ if (!$connection1) {
                 if(!is_null($password) || !is_null($login)){
                 $pwd = hash('sha256', $password);
                 $sql_hash = mysqli_query($connection1, "SELECT * FROM users WHERE log_user = '{$login}'");
-                $hash_arr = mysqli_fetch_array($sql_hash);
-                $hash_db = $hash_arr['pass_user'];
-                
-                if(/*password_verify(*/$pwd/*,*/== $hash_db)/*)*/{
+                $rowCount = mysqli_num_rows($sql_hash);
+                if($rowCount > 0) {
+                    $hash_arr = mysqli_fetch_array($sql_hash);
+                    $hash_db = $hash_arr['pass_user'];
+                }
+                else{
+                    echo '<script>alert("Проверьте введенные данные");</script>';
+                }
+                if($pwd== $hash_db){
                     $sql = mysqli_query($connection1, "SELECT * FROM users WHERE log_user = '{$login}'");
                     $rowCount = mysqli_num_rows($sql);
                     $result = mysqli_fetch_array($sql);
@@ -77,12 +82,20 @@ if (!$connection1) {
                                 echo '<script>
                                 alert("Проверьте введенные данные");</script>';
                             }
+                            else{
+                                echo '<script>
+                                alert("Не верный пароль!");</script>';
+                            }
                         }
                 }
                 else{
                     echo '<script>
-                                alert("Не верный пароль!");</script>';
+                                alert("Проверьте введенные данные");</script>';
                 }
+            }
+            else{
+                echo '<script>
+                                alert("Заполните все поля!");</script>';
             }
         }
         

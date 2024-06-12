@@ -14,21 +14,23 @@ if (!$connection1) {
 ?>
     <main>
         <div class="korz">
-            <div class="korz__title">
-                <div class="korz__title-image">
-                    <img src="images/korz.png" alt="">
+            <div class="container">
+                <div class="korz__title">
+                    <div class="korz__title-image">
+                        <img src="images/korz.png" alt="">
+                    </div>
+                    <h2 id="title">Корзина</h2>
                 </div>
-                <h2 id="title">Корзина</h2>
-            </div>
-            <div id="korz__orders" class="korz__orders">
-                <div class="title">
-                    <h3>Ваш заказ</h3>
-                </div>
-                <?php //include 'test.php'; ?>
-                
-                <div id="korz__order_container" class="korz__order_container"></div>
-                <div id="div__empty_korz" class="empty_korz">
-                    <p id="empty_korz"></p>
+                <div id="korz__orders" class="korz__orders">
+                    <div class="title">
+                        <h3>Ваш заказ</h3>
+                    </div>
+                    <?php //include 'test.php'; ?>
+                    
+                    <div id="korz__order_container" class="korz__order_container"></div>
+                    <div id="div__empty_korz" class="empty_korz">
+                        <p id="empty_korz"></p>
+                    </div>
                 </div>
             </div>
             
@@ -59,7 +61,7 @@ if (!$connection1) {
                     // document.getElementById("korz__order"+key).innerHTML = '';
                     // document.getElementById("korz__order-clear"+key).innerHTML = "<button type='submit'><img src='images/korz-clear.png' alt=''></button>";
                     document.getElementById("korz__order"+key).innerHTML += "<div id='korz__order-clear"+key+"' class='korz__order-clear' data-id='"+JSON.parse(cart[key][1])[0][1]+"'><button class='clear' type='submit'>X</button></div><div id='korz__container"+key+"' class='korz__container' data-keycart='"+key+"' data-price='"+JSON.parse(cart[key][1])[3][1]+"' data-id='"+JSON.parse(cart[key][1])[0][1]+"'></div>";
-                    document.getElementById("korz__container"+key).innerHTML += "<div id='korz__order-image"+key+"' class='korz__order-image'></div><div id='korz__order-title"+key+"' class='korz__order-title'></div><div id='korz__order-weight"+key+"' class='korz__order-weight'></div><div id='calc"+key+"' class='calc' data-step='1' data-min='1' data-max='100'></div><div id='korz__order-price"+key+"' class='korz__order-price'></div>";
+                    document.getElementById("korz__container"+key).innerHTML += "<div id='korz__order-image"+key+"' class='korz__order-image'></div><div class='korz__order-container'><div id='korz__order-title"+key+"' class='korz__order-title'></div><div id='korz__order-weight"+key+"' class='korz__order-weight'></div><div id='calc"+key+"' class='calc' data-step='1' data-min='1' data-max='100'></div><div id='korz__order-price"+key+"' class='korz__order-price'></div></div>";
                     // document.getElementById("korz__container").innerHTML = "<div id='korz__order-title' class='korz__order-title'></div>";
                     // document.getElementById("korz__container").innerHTML = "<div id='korz__order-weight' class='korz__order-weight'></div>";
                     // document.getElementById("korz__container").innerHTML = "<div id='calc' class='calc'></div>";
@@ -161,7 +163,7 @@ if (!$connection1) {
             document.getElementById("idForm"+key).hidden = true;
             document.getElementById("calc-num_input"+key).hidden = true;
         }
-        document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><input class="sumAll" name="sumAll" type="hidden" value="'+sumAll+'"><button class="order-btn" name="submit" type="submit">Оформить заказ</button><h5 class="order-sumAll" id="sumAll">Итого: '+sumAll+' ₽</h5>';
+        document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><input class="sumAll" name="sumAll" type="hidden" value="'+sumAll+'"><h5 class="order-sumAll" id="sumAll">Итого: '+sumAll+' ₽</h5><button class="order-btn" name="submit" type="submit">Оформить заказ</button>';
         
     }
         if(cart.length === 0){
