@@ -50,7 +50,7 @@ if (!$connection1) {
     //цикл для items
     // var i = 0;
     if(cart.length !== 0){
-        document.getElementById("korz__order_container").innerHTML += '<div class="order-btn__container"><form id="orderForm" method="post" action="form_order.php"></form></div>';
+        document.getElementById("korz__order_container").innerHTML += "<div class='order-btn__container'><form id='orderForm' method='post' action='form_order.php'></form></div>";
         for(let key = 0; key < cart.length; key++){
             
             
@@ -160,8 +160,8 @@ if (!$connection1) {
             //console.log(document.getElementById("calc-num"+key).value);
             document.getElementById("orderForm").innerHTML += '<input id="idForm'+key+'" name="idForm'+key+'" type="number" value="'+JSON.parse(cart[key][1])[0][1]+'">';
             document.getElementById("orderForm").innerHTML += document.getElementById("calc-num"+key).innerHTML;
-            document.getElementById("idForm"+key).hidden = true;
-            document.getElementById("calc-num_input"+key).hidden = true;
+            //document.getElementById("idForm"+key).hidden = true;
+            //document.getElementById("calc-num_input"+key).hidden = true;
         }
         document.getElementById("orderForm").innerHTML += '<input name="sizeForm" type="hidden" value="'+cart.length+'"><input class="sumAll" name="sumAll" type="hidden" value="'+sumAll+'"><h5 class="order-sumAll" id="sumAll">Итого: '+sumAll+' ₽</h5><button class="order-btn" name="submit" type="submit">Оформить заказ</button>';
         

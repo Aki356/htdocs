@@ -53,7 +53,12 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
           const sumAll = document.getElementById('sumAll');
           let   count1   = parseInt(countEl.value);
           const price   = parseInt(form.dataset.price) * count1;
-          
+          let idF = parseInt(form.getAttribute('data-keycart'));
+
+
+          const calcForm = document.getElementById('calc-num_input'+idF);
+          const idForm = document.getElementById('idForm'+idF);
+
           let sA = parseInt(sumForm.value) - parseInt(price);
           //console.log(sumForm.value);
           sumForm.setAttribute('value', sA);
@@ -62,6 +67,8 @@ if(JSON.parse(sessionStorage.getItem("cart")).length != 0){
           const total   = target.closest('.korz__order');
           const order_btn = document.querySelector(".order-btn__container");
           total.remove();
+          calcForm.remove();
+          idForm.remove();
           //console.log(price.innerHTML);
           if(cart.size === 0){
             order_btn.remove();

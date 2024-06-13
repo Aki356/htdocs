@@ -5,7 +5,12 @@ if(isset($_POST["form_order"])){
     if(!empty($_SESSION['login'])){
     $cart = array();
     for($key=0; $key<(int)$_POST["sizeForm"]; $key++){
-        $cart[(int)$_POST["idForm".$key]] = (int)$_POST["num_product".$key];
+        if(!empty($_POST["idForm".$key])&&!empty($_POST["num_product".$key])){
+            $cart[(int)$_POST["idForm".$key]] = (int)$_POST["num_product".$key];
+        }
+        else{
+            continue;
+        }
     }
     $month_list = array(
         1  => 'января',

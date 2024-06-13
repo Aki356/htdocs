@@ -37,19 +37,29 @@ if (isset($_SESSION['message'])){
                     <?php 
                     for($key=0; $key<(int)$_POST["sizeForm"]; $key++){
                         //$cart[(int)$_POST["idForm".$key]] = (int)$_POST["num_product".$key];
-                        $sql = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$_POST["idForm".$key]}'");
-                        while($result = mysqli_fetch_array($sql)){
-                            echo '<div class="set-order__item">
-                            <div class="set-order__item_title">
-                                <p>'.$result["name_product"].'</p>
-                            </div>
-                            <div class="set-order__item_weight">
-                                <p>'.$result["weight_product"].' '.$result["units_product"].'
-                            </div>
-                            <div class="set-order__item_count-price">
-                                <p>'.$_POST["num_product".$key].' x '.$result["price_product"].' ₽</p>
-                            </div>
-                        </div>';
+                        if(!empty($_POST["idForm".$key])){
+                            $sql = mysqli_query($connection1, "SELECT * FROM product WHERE id_product = '{$_POST["idForm".$key]}'");
+                            if($sql){
+                                while($result = mysqli_fetch_array($sql)){
+                                    echo '<div class="set-order__item">
+                                    <div class="set-order__item_title">
+                                        <p>'.$result["name_product"].'</p>
+                                    </div>
+                                    <div class="set-order__item_weight">
+                                        <p>'.$result["weight_product"].' '.$result["units_product"].'
+                                    </div>
+                                    <div class="set-order__item_count-price">
+                                        <p>'.$_POST["num_product".$key].' x '.$result["price_product"].' ₽</p>
+                                    </div>
+                                </div>';
+                                }
+                            }
+                            else{
+                                echo "";
+                            }
+                        }
+                        else{
+                            continue;
                         }
                     }
                     //echo $_POST["name"];
@@ -62,8 +72,13 @@ if (isset($_SESSION['message'])){
                 <form method="post">
                     <?php
                     for($key=0; $key<(int)$_POST["sizeForm"]; $key++){
-                        echo '<input hidden id="idForm'.$key.'" name="idForm'.$key.'" type="number" value="'.$_POST["idForm".$key].'">
+                        if(!empty($_POST["idForm".$key])&&!empty($_POST["num_product".$key])){
+                            echo '<input hidden id="idForm'.$key.'" name="idForm'.$key.'" type="number" value="'.$_POST["idForm".$key].'">
                         <input id="calc-num_input'.$key.'" name="num_product'.$key.'" class="calc-num" type="number" step="1" value="'.$_POST["num_product".$key].'" hidden>';
+                        }
+                        else{
+                            continue;
+                        }
                     }
                     echo '<input name="sizeForm" type="hidden" value="'.$_POST["sizeForm"].'"><input class="sumAll" name="sumAll" type="hidden" value="'.$_POST["sumAll"].'">';
                     ?>

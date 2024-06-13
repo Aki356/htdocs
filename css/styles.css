@@ -1004,11 +1004,11 @@ footer{
     width: 650px;
     margin: 0 auto;
     text-align: center;
-    padding-bottom: 70px;
+    padding-bottom: 50px;
 }
 .auth__form form input{
     width: 520px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     color: rgba(28, 27, 23, 0.50);
     font-family: Forum;
     font-size: 24px;
@@ -1040,7 +1040,7 @@ footer{
     background: #AF955C;
     position: relative;
     cursor: pointer;
-    margin-bottom: 28px;
+    margin-bottom: 45px;
     padding-top: 15px;
     padding-bottom: 15px;
 
@@ -1572,8 +1572,9 @@ footer{
     text-align: center;
 }
 
-.set-order{
+.set-order {
     margin-bottom: 120px;
+    padding-top: 100px;
 }
 .set-order__table{
     width: 900px;
