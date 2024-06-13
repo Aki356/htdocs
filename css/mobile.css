@@ -83,6 +83,7 @@
 @media only screen and (max-width: 1150px){
     .korz__order-title p{
         font-size: 23px;
+        text-align: center;
     }
     .korz__order-weight{
         font-size: 18px;
@@ -179,7 +180,7 @@
         margin-left: 0;
     }
     .item-info{
-        height: 128px;
+        height: 140px;
     }
     .item .item-info h3{
         font-size: 20px;
@@ -229,9 +230,21 @@
     .auth__title h2{
         font-size: 45px;
     }
+    .set-order__items{
+        width: 75%;
+    }
+    .set-order__table{
+        width: 690px;
+    }
+    .set-order__item_title{
+        width: 50%;
+    }
 }
 
 @media only screen and (max-width: 768px){
+    .none_korz-account{
+        display: none;
+    }
     .slyder__info {
         width: 85%;
         margin: 0 auto 25px auto;
@@ -363,8 +376,43 @@
     .item__container-flex div p{
         width: 170px;
     }
+    .auth__form p{
+        font-size: 20px;
+    }
+    .order-info__inputs>p>input{
+        width: 9%;
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+    .order-info__inputs{
+        width: 490px;
+    }
     .footer__logo{
         width: 25%;
+    }
+    
+}
+
+@media only screen and (max-width: 540px){
+    .container {
+        width: 94%;
+    }
+    .main-hall__items{
+        margin: 0 auto;
+        width: 465px;
+    }
+    .contacts__map>iframe {
+        width: 430px;
+    }
+    .popular__items{
+        margin: 45px auto 0;
+        width: 380px;
+    }
+    .auth__title-image{
+        width: 70px;
+    }
+    .auth__title h2 {
+        font-size: 35px;
     }
 }
 
@@ -424,9 +472,6 @@
     .main-hall__title h2 {
         font-size: 45px;
         text-align: center;
-    }
-    .footer__menu{
-        display: none;
     }
 }
 

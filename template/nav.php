@@ -8,7 +8,7 @@ if(empty($_SESSION['login'])){
 }
 else{
     $account = "profile.php";
-    if($_SESSION['login'] == 'admin'){
+    if($_SESSION['login'] == 'admin1'){
         $panel_a = '<li><a href="admin.php">Панель администратора</a></li>';
         $all_orders = '<li><a href="all_orders.php">Все заказы</a></li>';
     }
@@ -53,7 +53,7 @@ else{
                     <p><a href="tel:+79939312004">+79939312004</a></p>
                 </div>
             </div>
-            <div class="top__korz-account">
+            <div class="top__korz-account none_korz-account">
                 <a class="korz-img" href="korzina.php"><img src="images/korz.png" alt=""></a>                
                 <a class="account-img" href="<?= $account?>"><img src="<?= $photo_user?>" alt=""></a>
                 <!-- <a href="auth.php"><img src="images/account.png" alt=""></a> -->
@@ -79,6 +79,12 @@ else{
                         }
                         ?>
                     </ul>
+                    
+                    <div class="top__korz-account">
+                        <a class="korz-img" href="korzina.php"><img src="images/korz.png" alt=""></a>                
+                        <a class="account-img" href="<?= $account?>"><img src="<?= $photo_user?>" alt=""></a>
+                        <!-- <a href="auth.php"><img src="images/account.png" alt=""></a> -->
+                    </div>
                 </div>
             </div>
         </div>

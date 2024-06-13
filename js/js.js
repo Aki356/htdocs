@@ -36,6 +36,12 @@
       autoplay: false,
       autoplaySpeed: 2000,
     });
+    $('.main-hall__items').slick({
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      autoplay: false,
+      autoplaySpeed: 2000,
+    });
   }
   if(width < 768) { // если ширина меньше 768...
     $('.popular__items').slick({

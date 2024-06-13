@@ -276,7 +276,7 @@ body{
 .mob-menu{
     background-color: #F6EFEA;
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.15);
-    width: 300px;
+    width: 270px;
     visibility: visible;
     /* display: block; */
     position: absolute;
@@ -293,16 +293,17 @@ body{
 }
 .mob-menu__logo{
     display: flex;
-    justify-content: center;
     padding-top: 20px;
     padding-bottom: 10px;
+    width: 170px;
+    margin: 0 auto;
 }
 .mob-menu__logo img{
     width: 100%;
 }
 .mob-menu__top{
     border: #8C7645 3px solid;
-    width: 275px;
+    width: 250px;
     margin-left: 10px;
 }
 .mob-menu__menu{
@@ -1580,10 +1581,10 @@ footer{
     width: 900px;
     margin: 0 auto;
     text-align: center;
-    padding-bottom: 70px;
+    padding-bottom: 25px;
 }
 .set-order__items{
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
 }
 .set-order__items-title h3{
     text-align: left;
