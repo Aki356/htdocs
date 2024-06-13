@@ -242,11 +242,14 @@
     .top__number {
         width: 195px;
     }
+    .top__text p a {
+        font-size: 18px;
+    }
     .top__text{
         padding-right: 30px;
     }
     .slyder__photos{
-        width: 400px;
+        width: 450px;
         margin: 0 auto;
     }
     .slyder__photo {
@@ -255,6 +258,9 @@
     .slyder__photo img{
         height: 218px;
     }
+    .popular .title h2{
+        font-size: 45px;
+    }
     .popular__item-info h3 {
         font-size: 26px;
     }
@@ -262,8 +268,27 @@
         width: 64px;
         font-size: 34px;
     }
+    .gift__title h2{
+        font-size: 40px;
+    }
+    .gift__item{
+        width: 40%;
+    }
+    .events__title h2{
+        font-size: 40px;
+    }
+    .events__item{
+        width: 40%;
+    }
+    .main-hall__title h2{
+        font-size: 40px;
+    }
+    .gallery {
+        padding-bottom: 90px;
+    }
     .contacts__items{
         flex-direction: column-reverse;
+        margin-top: 35px;
     }
     .contacts__info{
         margin-bottom: 15px;
@@ -275,10 +300,72 @@
     .mob-btn{
         display: block;/*отменяю дисплей none*/
     }
+    .item{
+        width: 40%;
+    }
     .korz__order-clear {
         left: 466px;
     }
-
+    .auth__form{
+        width: 500px;
+        padding-bottom: 40px;
+    }
+    .auth__form form input{
+        width: 420px;
+        font-size: 20px;
+    }
+    .auth__form button{
+        margin-bottom: 40px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .profile__container{
+        width: 100%;
+    }
+    .profile__info>h2{
+        font-size: 26px;
+    }
+    .profile__btn{
+        flex-direction: column;
+    }
+    .profile__info-phone{
+        margin-bottom: 16px;
+    }
+    .profile__info-phone h4{
+        font-size: 17px;
+    }
+    .profile__btn>form>button{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .item__container-flex{
+        padding-left: 100px;
+        width: 100%;
+    }
+    .item__container-flex div{
+        margin-left: 5px;
+        margin-bottom: 5px;
+    }
+    .item__info{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .item__date_time_status{
+        align-items: flex-start;
+    }
+    .item__more{
+        margin-left: 15px;
+        width: 270px;
+    }
+    .item__more-p{
+        margin-right: 0px;
+    }
+    .item__container-flex div p{
+        width: 170px;
+    }
+    .footer__logo{
+        width: 25%;
+    }
 }
 
 
